@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+     <loc>https://Tony-Y.github.io/cgnn/</loc>
+     <lastmod>2019-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://Tony-Y.github.io/cgnn/introduction/</loc>
+     <lastmod>2019-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://Tony-Y.github.io/cgnn/architectures/</loc>
+     <lastmod>2019-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://Tony-Y.github.io/cgnn/configuration/</loc>
+     <lastmod>2019-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://Tony-Y.github.io/cgnn/license/</loc>
+     <lastmod>2019-05-28</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+</urlset>

@@ -1,0 +1,1981 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Crystal Graph Neural Networks">
+      
+      
+        <link rel="canonical" href="https://Tony-Y.github.io/cgnn/configuration/">
+      
+      
+        <meta name="author" content="Takenori Yamamoto">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.2.0">
+    
+    
+      
+        <title>Configuration - CGNN</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.750b69bd.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#c0ca33">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../css/extra.css">
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-140737414-2", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="lime" data-md-color-accent="lime">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#configuration" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://Tony-Y.github.io/cgnn/" title="CGNN" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">fingerprint</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              CGNN
+            </span>
+            <span class="md-header-nav__topic">
+              Configuration
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/Tony-Y/cgnn/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Tony-Y/cgnn
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://Tony-Y.github.io/cgnn/" title="CGNN" class="md-nav__button md-logo">
+      
+        <i class="md-icon">fingerprint</i>
+      
+    </a>
+    CGNN
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/Tony-Y/cgnn/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Tony-Y/cgnn
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      User Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        User Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../introduction/" title="Introduction" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../architectures/" title="Architectures" class="md-nav__link">
+      Architectures
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Configuration
+      </label>
+    
+    <a href="./" title="Configuration" class="md-nav__link md-nav__link--active">
+      Configuration
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#device" title="Device" class="md-nav__link">
+    Device
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#features" title="Features" class="md-nav__link">
+    Features
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#node-features" title="Node Features" class="md-nav__link">
+    Node Features
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hidden-features" title="Hidden Features" class="md-nav__link">
+    Hidden Features
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-features" title="Graph Features" class="md-nav__link">
+    Graph Features
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edgenet-features" title="EdgeNet Features" class="md-nav__link">
+    EdgeNet Features
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convolution" title="Convolution" class="md-nav__link">
+    Convolution
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#convolution-blocks" title="Convolution Blocks" class="md-nav__link">
+    Convolution Blocks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#node-level-activation" title="Node-Level Activation" class="md-nav__link">
+    Node-Level Activation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#node-level-batch-normalization" title="Node-Level Batch Normalization" class="md-nav__link">
+    Node-Level Batch Normalization
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edge-level-activation" title="Edge-Level Activation" class="md-nav__link">
+    Edge-Level Activation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edge-level-batch-normalization" title="Edge-Level Batch Normalization" class="md-nav__link">
+    Edge-Level Batch Normalization
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convolution-type" title="Convolution Type" class="md-nav__link">
+    Convolution Type
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#graph-level-mfcnet" title="Graph-Level MFCNet" class="md-nav__link">
+    Graph-Level MFCNet
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#graph-level-layers" title="Graph-Level Layers" class="md-nav__link">
+    Graph-Level Layers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-level-activation" title="Graph-Level Activation" class="md-nav__link">
+    Graph-Level Activation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-level-batch-normalization" title="Graph-Level Batch Normalization" class="md-nav__link">
+    Graph-Level Batch Normalization
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#edgenet" title="EdgeNet" class="md-nav__link">
+    EdgeNet
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edgenet-layers" title="EdgeNet Layers" class="md-nav__link">
+    EdgeNet Layers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edgenet-activation" title="EdgeNet Activation" class="md-nav__link">
+    EdgeNet Activation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edgenet-batch-normalization" title="EdgeNet Batch Normalization" class="md-nav__link">
+    EdgeNet Batch Normalization
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shortcut-option" title="Shortcut Option" class="md-nav__link">
+    Shortcut Option
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fast-edgenet" title="Fast EdgeNet" class="md-nav__link">
+    Fast EdgeNet
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fast-edgenet-option" title="Fast EdgeNet Option" class="md-nav__link">
+    Fast EdgeNet Option
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fast-edgenet-type" title="Fast EdgeNet Type" class="md-nav__link">
+    Fast EdgeNet Type
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aggregate-edgenet" title="Aggregate EdgeNet" class="md-nav__link">
+    Aggregate EdgeNet
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aggregate-edgenet-option" title="Aggregate EdgeNet Option" class="md-nav__link">
+    Aggregate EdgeNet Option
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edgenet-cardinality" title="EdgeNet Cardinality" class="md-nav__link">
+    EdgeNet Cardinality
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edgenet-width" title="EdgeNet Width" class="md-nav__link">
+    EdgeNet Width
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convolution-block-mfcnet" title="Convolution-Block MFCNet" class="md-nav__link">
+    Convolution-Block MFCNet
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cb-mfcnet-layers" title="CB-MFCNet Layers" class="md-nav__link">
+    CB-MFCNet Layers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cb-mfcnet-activation" title="CB-MFCNet Activation" class="md-nav__link">
+    CB-MFCNet Activation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cb-mfcnet-batch-normalization" title="CB-MFCNet Batch Normalization" class="md-nav__link">
+    CB-MFCNet Batch Normalization
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bias-terms" title="Bias Terms" class="md-nav__link">
+    Bias Terms
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#convolution-bias" title="Convolution Bias" class="md-nav__link">
+    Convolution Bias
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edgenet-bias" title="EdgeNet Bias" class="md-nav__link">
+    EdgeNet Bias
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cb-mfcnet-bias" title="CB-MFCNet Bias" class="md-nav__link">
+    CB-MFCNet Bias
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pooling" title="Pooling" class="md-nav__link">
+    Pooling
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#full-pooling" title="Full Pooling" class="md-nav__link">
+    Full Pooling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gated-pooling" title="Gated Pooling" class="md-nav__link">
+    Gated Pooling
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optimization" title="Optimization" class="md-nav__link">
+    Optimization
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#batch-size" title="Batch Size" class="md-nav__link">
+    Batch Size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimization-methods" title="Optimization Methods" class="md-nav__link">
+    Optimization Methods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#learning-rate" title="Learning Rate" class="md-nav__link">
+    Learning Rate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weight-decay" title="Weight Decay" class="md-nav__link">
+    Weight Decay
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gradient-clipping" title="Gradient Clipping" class="md-nav__link">
+    Gradient Clipping
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#milestones" title="Milestones" class="md-nav__link">
+    Milestones
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#learning-rate-decay" title="Learning Rate Decay" class="md-nav__link">
+    Learning Rate Decay
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cosine-annealing" title="Cosine Annealing" class="md-nav__link">
+    Cosine Annealing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#epochs" title="Epochs" class="md-nav__link">
+    Epochs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataset" title="Dataset" class="md-nav__link">
+    Dataset
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dataset-path" title="Dataset Path" class="md-nav__link">
+    Dataset Path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#target" title="Target" class="md-nav__link">
+    Target
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dataset-splitting" title="Dataset Splitting" class="md-nav__link">
+    Dataset Splitting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workers" title="Workers" class="md-nav__link">
+    Workers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#random-seed" title="Random Seed" class="md-nav__link">
+    Random Seed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loading-model" title="Loading Model" class="md-nav__link">
+    Loading Model
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extension" title="Extension" class="md-nav__link">
+    Extension
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#activation-functions" title="Activation Functions" class="md-nav__link">
+    Activation Functions
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#softplus" title="Softplus" class="md-nav__link">
+    Softplus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shifted-softplus" title="Shifted Softplus" class="md-nav__link">
+    Shifted Softplus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exponential-linear-units-elu" title="Exponential Linear Units (ELU)" class="md-nav__link">
+    Exponential Linear Units (ELU)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rectified-linear-units-relu" title="Rectified Linear Units (ReLU)" class="md-nav__link">
+    Rectified Linear Units (ReLU)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scaled-exponential-linear-units-selu" title="Scaled Exponential Linear Units (SELU)" class="md-nav__link">
+    Scaled Exponential Linear Units (SELU)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#continuously-differentiable-exponential-linear-units-celu" title="Continuously Differentiable Exponential Linear Units (CELU)" class="md-nav__link">
+    Continuously Differentiable Exponential Linear Units (CELU)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-identity-activation" title="The Identity Activation" class="md-nav__link">
+    The Identity Activation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../license/" title="License" class="md-nav__link">
+      License
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#device" title="Device" class="md-nav__link">
+    Device
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#features" title="Features" class="md-nav__link">
+    Features
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#node-features" title="Node Features" class="md-nav__link">
+    Node Features
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hidden-features" title="Hidden Features" class="md-nav__link">
+    Hidden Features
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-features" title="Graph Features" class="md-nav__link">
+    Graph Features
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edgenet-features" title="EdgeNet Features" class="md-nav__link">
+    EdgeNet Features
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convolution" title="Convolution" class="md-nav__link">
+    Convolution
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#convolution-blocks" title="Convolution Blocks" class="md-nav__link">
+    Convolution Blocks
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#node-level-activation" title="Node-Level Activation" class="md-nav__link">
+    Node-Level Activation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#node-level-batch-normalization" title="Node-Level Batch Normalization" class="md-nav__link">
+    Node-Level Batch Normalization
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edge-level-activation" title="Edge-Level Activation" class="md-nav__link">
+    Edge-Level Activation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edge-level-batch-normalization" title="Edge-Level Batch Normalization" class="md-nav__link">
+    Edge-Level Batch Normalization
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convolution-type" title="Convolution Type" class="md-nav__link">
+    Convolution Type
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#graph-level-mfcnet" title="Graph-Level MFCNet" class="md-nav__link">
+    Graph-Level MFCNet
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#graph-level-layers" title="Graph-Level Layers" class="md-nav__link">
+    Graph-Level Layers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-level-activation" title="Graph-Level Activation" class="md-nav__link">
+    Graph-Level Activation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-level-batch-normalization" title="Graph-Level Batch Normalization" class="md-nav__link">
+    Graph-Level Batch Normalization
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#edgenet" title="EdgeNet" class="md-nav__link">
+    EdgeNet
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#edgenet-layers" title="EdgeNet Layers" class="md-nav__link">
+    EdgeNet Layers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edgenet-activation" title="EdgeNet Activation" class="md-nav__link">
+    EdgeNet Activation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edgenet-batch-normalization" title="EdgeNet Batch Normalization" class="md-nav__link">
+    EdgeNet Batch Normalization
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shortcut-option" title="Shortcut Option" class="md-nav__link">
+    Shortcut Option
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fast-edgenet" title="Fast EdgeNet" class="md-nav__link">
+    Fast EdgeNet
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fast-edgenet-option" title="Fast EdgeNet Option" class="md-nav__link">
+    Fast EdgeNet Option
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fast-edgenet-type" title="Fast EdgeNet Type" class="md-nav__link">
+    Fast EdgeNet Type
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#aggregate-edgenet" title="Aggregate EdgeNet" class="md-nav__link">
+    Aggregate EdgeNet
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aggregate-edgenet-option" title="Aggregate EdgeNet Option" class="md-nav__link">
+    Aggregate EdgeNet Option
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edgenet-cardinality" title="EdgeNet Cardinality" class="md-nav__link">
+    EdgeNet Cardinality
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edgenet-width" title="EdgeNet Width" class="md-nav__link">
+    EdgeNet Width
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convolution-block-mfcnet" title="Convolution-Block MFCNet" class="md-nav__link">
+    Convolution-Block MFCNet
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cb-mfcnet-layers" title="CB-MFCNet Layers" class="md-nav__link">
+    CB-MFCNet Layers
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cb-mfcnet-activation" title="CB-MFCNet Activation" class="md-nav__link">
+    CB-MFCNet Activation
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cb-mfcnet-batch-normalization" title="CB-MFCNet Batch Normalization" class="md-nav__link">
+    CB-MFCNet Batch Normalization
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bias-terms" title="Bias Terms" class="md-nav__link">
+    Bias Terms
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#convolution-bias" title="Convolution Bias" class="md-nav__link">
+    Convolution Bias
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edgenet-bias" title="EdgeNet Bias" class="md-nav__link">
+    EdgeNet Bias
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cb-mfcnet-bias" title="CB-MFCNet Bias" class="md-nav__link">
+    CB-MFCNet Bias
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pooling" title="Pooling" class="md-nav__link">
+    Pooling
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#full-pooling" title="Full Pooling" class="md-nav__link">
+    Full Pooling
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gated-pooling" title="Gated Pooling" class="md-nav__link">
+    Gated Pooling
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optimization" title="Optimization" class="md-nav__link">
+    Optimization
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#batch-size" title="Batch Size" class="md-nav__link">
+    Batch Size
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#optimization-methods" title="Optimization Methods" class="md-nav__link">
+    Optimization Methods
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#learning-rate" title="Learning Rate" class="md-nav__link">
+    Learning Rate
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weight-decay" title="Weight Decay" class="md-nav__link">
+    Weight Decay
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gradient-clipping" title="Gradient Clipping" class="md-nav__link">
+    Gradient Clipping
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#milestones" title="Milestones" class="md-nav__link">
+    Milestones
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#learning-rate-decay" title="Learning Rate Decay" class="md-nav__link">
+    Learning Rate Decay
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cosine-annealing" title="Cosine Annealing" class="md-nav__link">
+    Cosine Annealing
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#epochs" title="Epochs" class="md-nav__link">
+    Epochs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataset" title="Dataset" class="md-nav__link">
+    Dataset
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dataset-path" title="Dataset Path" class="md-nav__link">
+    Dataset Path
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#target" title="Target" class="md-nav__link">
+    Target
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dataset-splitting" title="Dataset Splitting" class="md-nav__link">
+    Dataset Splitting
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workers" title="Workers" class="md-nav__link">
+    Workers
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#random-seed" title="Random Seed" class="md-nav__link">
+    Random Seed
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loading-model" title="Loading Model" class="md-nav__link">
+    Loading Model
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extension" title="Extension" class="md-nav__link">
+    Extension
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#activation-functions" title="Activation Functions" class="md-nav__link">
+    Activation Functions
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#softplus" title="Softplus" class="md-nav__link">
+    Softplus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shifted-softplus" title="Shifted Softplus" class="md-nav__link">
+    Shifted Softplus
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exponential-linear-units-elu" title="Exponential Linear Units (ELU)" class="md-nav__link">
+    Exponential Linear Units (ELU)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rectified-linear-units-relu" title="Rectified Linear Units (ReLU)" class="md-nav__link">
+    Rectified Linear Units (ReLU)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scaled-exponential-linear-units-selu" title="Scaled Exponential Linear Units (SELU)" class="md-nav__link">
+    Scaled Exponential Linear Units (SELU)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#continuously-differentiable-exponential-linear-units-celu" title="Continuously Differentiable Exponential Linear Units (CELU)" class="md-nav__link">
+    Continuously Differentiable Exponential Linear Units (CELU)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-identity-activation" title="The Identity Activation" class="md-nav__link">
+    The Identity Activation
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/Tony-Y/cgnn/edit/master/docs/configuration.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="configuration">Configuration<a class="headerlink" href="#configuration" title="Permanent link">&para;</a></h1>
+<p>The CGNN program is a Python script, and you can run it with a basic configuration as follows:</p>
+<div class="codehilite"><pre><span></span>python <span class="si">${</span><span class="nv">CGNN_HOME</span><span class="si">}</span>/src/cgnn.py <span class="se">\</span>
+  --num_epochs <span class="m">100</span> <span class="se">\</span>
+  --batch_size <span class="m">512</span> <span class="se">\</span>
+  --lr <span class="m">0</span>.001 <span class="se">\</span>
+  --n_node_feat <span class="si">${</span><span class="nv">NodeFeatures</span><span class="si">}</span> <span class="se">\</span>
+  --n_hidden_feat <span class="m">64</span> <span class="se">\</span>
+  --n_graph_feat <span class="m">128</span> <span class="se">\</span>
+  --n_conv <span class="m">3</span> <span class="se">\</span>
+  --n_fc <span class="m">2</span> <span class="se">\</span>
+  --dataset_path <span class="si">${</span><span class="nv">DATASET</span><span class="si">}</span> <span class="se">\</span>
+  --split_file <span class="si">${</span><span class="nv">DATASET</span><span class="si">}</span>/split.json <span class="se">\</span>
+  --target_name formation_energy_per_atom <span class="se">\</span>
+  --milestones <span class="m">80</span> <span class="se">\</span>
+  --gamma <span class="m">0</span>.1 <span class="se">\</span>
+</pre></div>
+
+<p>You can configure your CGNN model and training strategy using the following options:</p>
+<h2 id="device">Device<a class="headerlink" href="#device" title="Permanent link">&para;</a></h2>
+<div class="admonition summary">
+<p><code>--device</code> String (Default: <code>cuda</code>)</p>
+</div>
+<p>This string value must be <code>cpu</code> or <code>cuda</code>. If no CUDA device is available, the CPU device will be used.</p>
+<h2 id="features">Features<a class="headerlink" href="#features" title="Permanent link">&para;</a></h2>
+<h3 id="node-features">Node Features<a class="headerlink" href="#node-features" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--n_node_feat</code> Integer (Default: 4)</p>
+</div>
+<p>This integer value is the number of node features, <span><span class="MathJax_Preview">d_{v}</span><script type="math/tex">d_{v}</script></span>. If the one-hot encoding is used, it is the number of node species, <span><span class="MathJax_Preview">K</span><script type="math/tex">K</script></span>.</p>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>The value must be equal to the size of the node vectors defined in the configuration file in the database directory (<code>config.json</code>).</p>
+</div>
+<h3 id="hidden-features">Hidden Features<a class="headerlink" href="#hidden-features" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--n_hidden_feat</code> Integer (Default: 16)</p>
+</div>
+<p>This integer value is the number of features of the hidden states, <span><span class="MathJax_Preview">d_{h}</span><script type="math/tex">d_{h}</script></span>.</p>
+<h3 id="graph-features">Graph Features<a class="headerlink" href="#graph-features" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--n_graph_feat</code> Integer (Default: 32)</p>
+</div>
+<p>This integer value is the number of features of the graph states, <span><span class="MathJax_Preview">d_{g}</span><script type="math/tex">d_{g}</script></span>.</p>
+<h3 id="edgenet-features">EdgeNet Features<a class="headerlink" href="#edgenet-features" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--n_edge_net_feat</code> Integer (Default: 16)</p>
+</div>
+<p>This integer value is the number of features for the EdgeNet layers, <span><span class="MathJax_Preview">d_{e}</span><script type="math/tex">d_{e}</script></span>.</p>
+<h2 id="convolution">Convolution<a class="headerlink" href="#convolution" title="Permanent link">&para;</a></h2>
+<h3 id="convolution-blocks">Convolution Blocks<a class="headerlink" href="#convolution-blocks" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--n_conv</code> Integer (Default: 3)</p>
+</div>
+<p>This integer value is the number of convolution blocks, <span><span class="MathJax_Preview">T</span><script type="math/tex">T</script></span>.</p>
+<h3 id="node-level-activation">Node-Level Activation<a class="headerlink" href="#node-level-activation" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--node_activation</code> String (Default: <code>none</code>)</p>
+</div>
+<p>This string value is a name of the activation function lastly used in the convolution blocks.</p>
+<h3 id="node-level-batch-normalization">Node-Level Batch Normalization<a class="headerlink" href="#node-level-batch-normalization" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--use_node_batch_norm</code></p>
+</div>
+<p>If this option is used, the batch normalization is applied before the node-level activation.</p>
+<h3 id="edge-level-activation">Edge-Level Activation<a class="headerlink" href="#edge-level-activation" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--edge_activation</code> String (Default: <code>none</code>)</p>
+</div>
+<p>This string value is a name of the activation function used in the gated convolutions.</p>
+<h3 id="edge-level-batch-normalization">Edge-Level Batch Normalization<a class="headerlink" href="#edge-level-batch-normalization" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--use_edge_batch_norm</code></p>
+</div>
+<p>If this option is used, the batch normalization is applied before the sigmoid and edge-level activation in the convolution.</p>
+<h3 id="convolution-type">Convolution Type<a class="headerlink" href="#convolution-type" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--conv_type</code> Integer (Default: 0)</p>
+</div>
+<p>If this value is greater than 0, the gated convolution is gvien by</p>
+<div>
+<div class="MathJax_Preview">
+h_{i}^{\rm out} = \sum_{j \in {\cal N}_{i}} \sigma(e_{ij}^{\rm in} W_{cg}) \odot f(h_{j}^{\rm in} W_{ch}),
+</div>
+<script type="math/tex; mode=display">
+h_{i}^{\rm out} = \sum_{j \in {\cal N}_{i}} \sigma(e_{ij}^{\rm in} W_{cg}) \odot f(h_{j}^{\rm in} W_{ch}),
+</script>
+</div>
+<p>and otherwise the default</p>
+<div>
+<div class="MathJax_Preview">
+h_{i}^{\rm out} = \sum_{j \in {\cal N}_{i}} \sigma(e_{ij}^{\rm in} W_{cg}) \odot f(e_{ij}^{\rm in} W_{ch}),
+</div>
+<script type="math/tex; mode=display">
+h_{i}^{\rm out} = \sum_{j \in {\cal N}_{i}} \sigma(e_{ij}^{\rm in} W_{cg}) \odot f(e_{ij}^{\rm in} W_{ch}),
+</script>
+</div>
+<p>where <span><span class="MathJax_Preview">h_{j}^{\rm in}</span><script type="math/tex">h_{j}^{\rm in}</script></span> and <span><span class="MathJax_Preview">e_{ij}^{\rm in}</span><script type="math/tex">e_{ij}^{\rm in}</script></span> are the input and output of the EdgeNet, respectively.</p>
+<h2 id="graph-level-mfcnet">Graph-Level MFCNet<a class="headerlink" href="#graph-level-mfcnet" title="Permanent link">&para;</a></h2>
+<h3 id="graph-level-layers">Graph-Level Layers<a class="headerlink" href="#graph-level-layers" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--n_fc</code> Integer (Default: 2)</p>
+</div>
+<p>This integer value is the number of layers for the graph-level MFCNet, <span><span class="MathJax_Preview">L_{g}</span><script type="math/tex">L_{g}</script></span>.</p>
+<h3 id="graph-level-activation">Graph-Level Activation<a class="headerlink" href="#graph-level-activation" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--activation</code> String (Default: <code>softplus</code>)</p>
+</div>
+<p>This string value is a name of the activation function used in the graph-level fully connected layers and the pooling layer.</p>
+<h3 id="graph-level-batch-normalization">Graph-Level Batch Normalization<a class="headerlink" href="#graph-level-batch-normalization" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--use_batch_norm</code></p>
+</div>
+<p>If this option is used, the batch normalization is applied before the graph-level activation, and the default bias terms are removed except for one in the linear regression.</p>
+<h2 id="edgenet">EdgeNet<a class="headerlink" href="#edgenet" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>When using an original or aggregate EdgeNet, the hidden and edge state sizes are practically limited to small numbers (<em>e.g.</em>, <span><span class="MathJax_Preview">d_{h}=16</span><script type="math/tex">d_{h}=16</script></span> and <span><span class="MathJax_Preview">d_{e}=24</span><script type="math/tex">d_{e}=24</script></span>) because the bilinear transformation used in the EdgeNet is an extremely time-consuming process.</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>The original EdgeResNet with 2 layers is given by the following configuration:
+<div class="codehilite"><pre><span></span>--n_edge_net_layers 2 \
+--use_edge_net_shortcut \
+</pre></div></p>
+</div>
+<h3 id="edgenet-layers">EdgeNet Layers<a class="headerlink" href="#edgenet-layers" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--n_edge_net_layers</code> Integer (Default: 0)</p>
+</div>
+<p>This integer value is the number of EdgeNet layers, <span><span class="MathJax_Preview">L_{e}</span><script type="math/tex">L_{e}</script></span>.</p>
+<h3 id="edgenet-activation">EdgeNet Activation<a class="headerlink" href="#edgenet-activation" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--edge_net_activation</code> String (Default: <code>elu</code>)</p>
+</div>
+<p>This string value is a name of the activation function used in the EdgeNet layers.</p>
+<h3 id="edgenet-batch-normalization">EdgeNet Batch Normalization<a class="headerlink" href="#edgenet-batch-normalization" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--use_edge_net_batch_norm</code></p>
+</div>
+<p>If this option is used, the batch normalization is applied before the EdgeNet activation.</p>
+<h3 id="shortcut-option">Shortcut Option<a class="headerlink" href="#shortcut-option" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--use_edge_net_shortcut</code></p>
+</div>
+<p>If this option is used, the EdgeResNet is employed.</p>
+<h2 id="fast-edgenet">Fast EdgeNet<a class="headerlink" href="#fast-edgenet" title="Permanent link">&para;</a></h2>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>The CGNN paper uses the fast EdgeResNet with only a single layer given by the following configuration:
+<div class="codehilite"><pre><span></span>--n_edge_net_layers 1 \
+--use_fast_edge_network \
+--fast_edge_network_type 1 \
+--use_edge_net_shortcut \
+</pre></div></p>
+</div>
+<h3 id="fast-edgenet-option">Fast EdgeNet Option<a class="headerlink" href="#fast-edgenet-option" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--use_fast_edge_network</code></p>
+</div>
+<p>If this option is used, one of the two fast EdgeNet is used in the convolution blocks.  </p>
+<h3 id="fast-edgenet-type">Fast EdgeNet Type<a class="headerlink" href="#fast-edgenet-type" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--fast_edge_network_type</code> Integer (Default: 0)</p>
+</div>
+<p>If this value is 0, the original fast edge network is used, and otherwise the modified one.  </p>
+<h2 id="aggregate-edgenet">Aggregate EdgeNet<a class="headerlink" href="#aggregate-edgenet" title="Permanent link">&para;</a></h2>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>The aggregate EdgeResNet with 2 layers for <span><span class="MathJax_Preview">C=2</span><script type="math/tex">C=2</script></span> and <span><span class="MathJax_Preview">d_{b}=12</span><script type="math/tex">d_{b}=12</script></span> is given by the following configuration:
+<div class="codehilite"><pre><span></span>--n_edge_net_layers 2 \
+--use_aggregated_edge_network \
+--edge_net_cardinality 12 \
+--edge_net_width 2 \
+--use_edge_net_shortcut \
+</pre></div></p>
+</div>
+<h3 id="aggregate-edgenet-option">Aggregate EdgeNet Option<a class="headerlink" href="#aggregate-edgenet-option" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--use_aggregated_edge_network</code></p>
+</div>
+<p>If this option is used, the aggregate EdgeNet is employed in the convolution blocks.</p>
+<h3 id="edgenet-cardinality">EdgeNet Cardinality<a class="headerlink" href="#edgenet-cardinality" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--edge_net_cardinality</code> Integer (Default: 32)</p>
+</div>
+<p>The integer value is the number of aggregated transformations (cardinality), <span><span class="MathJax_Preview">C</span><script type="math/tex">C</script></span>.</p>
+<h3 id="edgenet-width">EdgeNet Width<a class="headerlink" href="#edgenet-width" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--edge_net_width</code> Integer (Default: 4)</p>
+</div>
+<p>The integer value is the feature size for all the bilinear transformations in the aggregate EdgeNet, <span><span class="MathJax_Preview">d_{b}</span><script type="math/tex">d_{b}</script></span>.</p>
+<h2 id="convolution-block-mfcnet">Convolution-Block MFCNet<a class="headerlink" href="#convolution-block-mfcnet" title="Permanent link">&para;</a></h2>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>In the CGNN paper, the following configuration is used for the default convolution-block MFCNet.
+<div class="codehilite"><pre><span></span>--n_postconv_net_layers 2 \
+--use_postconv_net_batch_norm \
+</pre></div></p>
+</div>
+<h3 id="cb-mfcnet-layers">CB-MFCNet Layers<a class="headerlink" href="#cb-mfcnet-layers" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--n_postconv_net_layers</code> Integer (Default: 0)</p>
+</div>
+<p>This integer value is the number of layers for the convolution-block MFCNet, <span><span class="MathJax_Preview">L_{c}</span><script type="math/tex">L_{c}</script></span>.</p>
+<h3 id="cb-mfcnet-activation">CB-MFCNet Activation<a class="headerlink" href="#cb-mfcnet-activation" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--postconv_net_activation</code> String (Default: <code>elu</code>)</p>
+</div>
+<p>The string value is a name of the activation function used in the convolution-block MFCNet layers.</p>
+<h3 id="cb-mfcnet-batch-normalization">CB-MFCNet Batch Normalization<a class="headerlink" href="#cb-mfcnet-batch-normalization" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--use_postconv_net_batch_norm</code></p>
+</div>
+<p>If this option is used, the batch normalization is applied before the activation in every layer in the convolution-block MFCNet.</p>
+<h2 id="bias-terms">Bias Terms<a class="headerlink" href="#bias-terms" title="Permanent link">&para;</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following bias terms are not included in the models used in the CGNN paper.</p>
+</div>
+<h3 id="convolution-bias">Convolution Bias<a class="headerlink" href="#convolution-bias" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--conv_bias</code></p>
+</div>
+<p>If this option is used, a bias term is added to every linear transformation in the gated convolution.</p>
+<h3 id="edgenet-bias">EdgeNet Bias<a class="headerlink" href="#edgenet-bias" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--edge_net_bias</code></p>
+</div>
+<p>If this option is used, a bias term is added to every bilinear transformation in the original and aggregate EdgeNet, and to every linear transformation in the fast and aggregate EdgeNet.</p>
+<h3 id="cb-mfcnet-bias">CB-MFCNet Bias<a class="headerlink" href="#cb-mfcnet-bias" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--postconv_net_bias</code></p>
+</div>
+<p>If this option is used, the bias term is added to the linear transformation in every CB-MFCNet layer.</p>
+<h2 id="pooling">Pooling<a class="headerlink" href="#pooling" title="Permanent link">&para;</a></h2>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>In the CGNN paper, the following configuration is used for the full and gated pooling.
+<div class="codehilite"><pre><span></span>--full_pooling \
+--gated_pooling \
+</pre></div></p>
+</div>
+<h3 id="full-pooling">Full Pooling<a class="headerlink" href="#full-pooling" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--full_pooling</code></p>
+</div>
+<p>If this option is used, the pooling layer uses all outputs of the convolution blocks to produce a graph-level state.</p>
+<h3 id="gated-pooling">Gated Pooling<a class="headerlink" href="#gated-pooling" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--gated_pooling</code></p>
+</div>
+<p>If this option is used, the pooling layer employs the gating mechanism.</p>
+<h2 id="optimization">Optimization<a class="headerlink" href="#optimization" title="Permanent link">&para;</a></h2>
+<h3 id="batch-size">Batch Size<a class="headerlink" href="#batch-size" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--batch_size</code> Integer (Default: 8)</p>
+</div>
+<p>The integer value is the mini-batch size for the stochastic optimization.</p>
+<h3 id="optimization-methods">Optimization Methods<a class="headerlink" href="#optimization-methods" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--optim</code> String (Default: <code>adam</code>)</p>
+</div>
+<p>The string value is a name of the optimizer, which must be one of <code>sgd</code>, <code>adam</code>, and <code>amsgrad</code>. <code>sgd</code> is the stochastic gradient descent with the Nesterov momentum (the momentum factor = 0.9). <code>adam</code> and <code>amsgrad</code> use the standard parameters <span><span class="MathJax_Preview">\beta_{1}=0.9</span><script type="math/tex">\beta_{1}=0.9</script></span>, <span><span class="MathJax_Preview">\beta_{2}=0.999</span><script type="math/tex">\beta_{2}=0.999</script></span>, and <span><span class="MathJax_Preview">\epsilon=10^{-8}</span><script type="math/tex">\epsilon=10^{-8}</script></span>.</p>
+<h3 id="learning-rate">Learning Rate<a class="headerlink" href="#learning-rate" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--lr</code> Float (Default: <span><span class="MathJax_Preview">10^{-3}</span><script type="math/tex">10^{-3}</script></span>)</p>
+</div>
+<p>This floating-point value is the learning rate for the stochastic optimization.</p>
+<h3 id="weight-decay">Weight Decay<a class="headerlink" href="#weight-decay" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--weight_decay</code> Float (Default: 0)</p>
+</div>
+<p>This floating-point value is the weight decay for the stochastic optimization (<em>i.e.</em>, the L2 regularization).</p>
+<h3 id="gradient-clipping">Gradient Clipping<a class="headerlink" href="#gradient-clipping" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--clip_value</code> Float (Default: 0)</p>
+</div>
+<p>This floating-point value is used for the gradient clipping.</p>
+<h3 id="milestones">Milestones<a class="headerlink" href="#milestones" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--milestones</code>  Integer [Integer ...] (Default: 10)</p>
+</div>
+<p>This integer sequence <span><span class="MathJax_Preview">M_{1}, M_{2}, \ldots, M_{n}</span><script type="math/tex">M_{1}, M_{2}, \ldots, M_{n}</script></span> must satisfy the condition <span><span class="MathJax_Preview">M_{i} &lt; M_{i+1}</span><script type="math/tex">M_{i} < M_{i+1}</script></span>.
+At <span><span class="MathJax_Preview">M_{i}</span><script type="math/tex">M_{i}</script></span> epochs, the learning rate is multiplied by <span><span class="MathJax_Preview">\gamma</span><script type="math/tex">\gamma</script></span>. If the first value <span><span class="MathJax_Preview">M_{1}</span><script type="math/tex">M_{1}</script></span> is negative, its absolute value will be used as the step size for the step LR scheduler.</p>
+<h3 id="learning-rate-decay">Learning Rate Decay<a class="headerlink" href="#learning-rate-decay" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--gamma</code> Float (Default: 0.1)</p>
+</div>
+<p>This floating-point value is used as the learning rate decay, which is the <span><span class="MathJax_Preview">\gamma</span><script type="math/tex">\gamma</script></span> value of the LR scheduler. If you want to use the step LR scheduler, for example:</p>
+<div class="codehilite"><pre><span></span>--milestones -2 --gamma 0.98
+</pre></div>
+
+<p>which sets the step size to 2 epochs, and the <span><span class="MathJax_Preview">\gamma</span><script type="math/tex">\gamma</script></span> value to 0.98.</p>
+<h3 id="cosine-annealing">Cosine Annealing<a class="headerlink" href="#cosine-annealing" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--cosine_annealing</code></p>
+</div>
+<p>If this option is used, the cosine annealing scheduler is employed.</p>
+<div>
+<div class="MathJax_Preview">
+\eta_{t} = \eta_{min} + \frac{1}{2} (\eta_{max} - \eta_{min}) ( 1 + \cos(\frac{T_{cur}}{T_{max}}\pi))
+</div>
+<script type="math/tex; mode=display">
+\eta_{t} = \eta_{min} + \frac{1}{2} (\eta_{max} - \eta_{min}) ( 1 + \cos(\frac{T_{cur}}{T_{max}}\pi))
+</script>
+</div>
+<p><span><span class="MathJax_Preview">\eta_{min}</span><script type="math/tex">\eta_{min}</script></span> and <span><span class="MathJax_Preview">T_{max}</span><script type="math/tex">T_{max}</script></span> are set by the options <code>--gamma</code> and <code>--milestones</code>, respectively. <span><span class="MathJax_Preview">\eta_{max}</span><script type="math/tex">\eta_{max}</script></span> is the learning rate set by the option <code>--lr</code>.</p>
+<h3 id="epochs">Epochs<a class="headerlink" href="#epochs" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--num_epochs</code> Integer (Default: 5)</p>
+</div>
+<p>This integer value is the total number of epochs for the stochastic optimization.</p>
+<h2 id="dataset">Dataset<a class="headerlink" href="#dataset" title="Permanent link">&para;</a></h2>
+<h3 id="dataset-path">Dataset Path<a class="headerlink" href="#dataset-path" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--dataset_path</code> String</p>
+</div>
+<p>This string value must be a path to the directory containing dataset files, <code>config.json</code>,  <code>graph_data.npz</code>, and <code>targets.csv</code>.</p>
+<h3 id="target">Target<a class="headerlink" href="#target" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--target_name</code> String</p>
+</div>
+<p>This string value must be one of the target names in the header of the target file <code>targets.csv</code>.</p>
+<h3 id="dataset-splitting">Dataset Splitting<a class="headerlink" href="#dataset-splitting" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--split_file</code> String</p>
+</div>
+<p>This string value must be a path to a split file <code>split.json</code></p>
+<h3 id="workers">Workers<a class="headerlink" href="#workers" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p><code>--num_workers</code> Integer (Default: 0)</p>
+</div>
+<p>This value should be 0.</p>
+<h2 id="random-seed">Random Seed<a class="headerlink" href="#random-seed" title="Permanent link">&para;</a></h2>
+<div class="admonition summary">
+<p><code>--seed</code> Integer (Default: 12345)</p>
+</div>
+<p>This value is the seed of the random number generator for Pytorch.</p>
+<h2 id="loading-model">Loading Model<a class="headerlink" href="#loading-model" title="Permanent link">&para;</a></h2>
+<div class="admonition summary">
+<p><code>--load_model</code></p>
+</div>
+<p>If this option is used, the initial model weights are loaded from a model file <code>model.pth</code> in the current directory.</p>
+<h2 id="extension">Extension<a class="headerlink" href="#extension" title="Permanent link">&para;</a></h2>
+<div class="admonition summary">
+<p><code>--use_extension</code></p>
+</div>
+<p>If this option is used, the extension layer multiplies the output of the regression layer by the number of nodes. This is usually used for extensive properties.</p>
+<h2 id="activation-functions">Activation Functions<a class="headerlink" href="#activation-functions" title="Permanent link">&para;</a></h2>
+<p>The following keywords can be used as activation names.</p>
+<h3 id="softplus">Softplus<a class="headerlink" href="#softplus" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p class="admonition-title">Keyword</p>
+<p><code>Softplus</code></p>
+</div>
+<p><span><span class="MathJax_Preview">\text{Softplus}(x) = \log(1+\exp(x))</span><script type="math/tex">\text{Softplus}(x) = \log(1+\exp(x))</script></span></p>
+<h3 id="shifted-softplus">Shifted Softplus<a class="headerlink" href="#shifted-softplus" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p class="admonition-title">Keyword</p>
+<p><code>SSP</code></p>
+</div>
+<p><span><span class="MathJax_Preview">\text{SSP}(x) = \text{Softplus}(x) - \text{Softplus}(0)</span><script type="math/tex">\text{SSP}(x) = \text{Softplus}(x) - \text{Softplus}(0)</script></span></p>
+<h3 id="exponential-linear-units-elu">Exponential Linear Units (ELU)<a class="headerlink" href="#exponential-linear-units-elu" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p class="admonition-title">Keyword</p>
+<p><code>ELU</code> or <code>'ELU(alpha)'</code> (default <code>alpha</code> = 1.0)</p>
+</div>
+<p><span><span class="MathJax_Preview">\text{ELU}(x) = \max(0,x) + \min(0, \alpha (\exp(x) − 1))</span><script type="math/tex">\text{ELU}(x) = \max(0,x) + \min(0, \alpha (\exp(x) − 1))</script></span></p>
+<h3 id="rectified-linear-units-relu">Rectified Linear Units (ReLU)<a class="headerlink" href="#rectified-linear-units-relu" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p class="admonition-title">Keyword</p>
+<p><code>ReLU</code></p>
+</div>
+<p><span><span class="MathJax_Preview">\text{ReLU}(x) = \max(0,x)</span><script type="math/tex">\text{ReLU}(x) = \max(0,x)</script></span></p>
+<h3 id="scaled-exponential-linear-units-selu">Scaled Exponential Linear Units (SELU)<a class="headerlink" href="#scaled-exponential-linear-units-selu" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p class="admonition-title">Keyword</p>
+<p><code>SELU</code></p>
+</div>
+<p><span><span class="MathJax_Preview">\text{SELU}(x) = \lambda (\max(0,x)+\min(0,\alpha (\exp(x)−1)))</span><script type="math/tex">\text{SELU}(x) = \lambda (\max(0,x)+\min(0,\alpha (\exp(x)−1)))</script></span></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Ref: "Self-Normalizing Neural Networks" <a href="https://arxiv.org/abs/1706.02515">arXiv</a></p>
+</div>
+<h3 id="continuously-differentiable-exponential-linear-units-celu">Continuously Differentiable Exponential Linear Units (CELU)<a class="headerlink" href="#continuously-differentiable-exponential-linear-units-celu" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p class="admonition-title">Keyword</p>
+<p><code>CELU</code> or <code>'CELU(alpha)'</code> (default <code>alpha</code> = 1.0)</p>
+</div>
+<p><span><span class="MathJax_Preview">\text{CELU}(x)=\max(0,x)+\min(0,\alpha (\exp(x/\alpha)−1))</span><script type="math/tex">\text{CELU}(x)=\max(0,x)+\min(0,\alpha (\exp(x/\alpha)−1))</script></span></p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Ref: "Continuously Differentiable Exponential Linear Units" <a href="https://arxiv.org/abs/1704.07483">arXiv</a></p>
+</div>
+<h3 id="the-identity-activation">The Identity Activation<a class="headerlink" href="#the-identity-activation" title="Permanent link">&para;</a></h3>
+<div class="admonition summary">
+<p class="admonition-title">Keyword</p>
+<p><code>None</code></p>
+</div>
+<p><span><span class="MathJax_Preview">\text{Identity}(x) = x</span><script type="math/tex">\text{Identity}(x) = x</script></span></p>
+<p>This is unavailable for <code>--activation</code> and <code>--postconv_net_activation</code>.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../architectures/" title="Architectures" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Architectures
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../license/" title="License" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                License
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2019 Takenori Yamamoto
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/Tony-Y" class="md-footer-social__link fa fa-github"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.39abc4af.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>

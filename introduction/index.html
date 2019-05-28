@@ -1,0 +1,726 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Crystal Graph Neural Networks">
+      
+      
+        <link rel="canonical" href="https://Tony-Y.github.io/cgnn/introduction/">
+      
+      
+        <meta name="author" content="Takenori Yamamoto">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.2.0">
+    
+    
+      
+        <title>Introduction - CGNN</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.750b69bd.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.224b79ff.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#c0ca33">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../css/extra.css">
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-140737414-2", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="lime" data-md-color-accent="lime">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448"
+    viewBox="0 0 416 448" id="__github">
+  <path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19-18.125
+        8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19 18.125-8.5
+        18.125 8.5 10.75 19 3.125 20.5zM320 304q0 10-3.125 20.5t-10.75
+        19-18.125 8.5-18.125-8.5-10.75-19-3.125-20.5 3.125-20.5 10.75-19
+        18.125-8.5 18.125 8.5 10.75 19 3.125 20.5zM360
+        304q0-30-17.25-51t-46.75-21q-10.25 0-48.75 5.25-17.75 2.75-39.25
+        2.75t-39.25-2.75q-38-5.25-48.75-5.25-29.5 0-46.75 21t-17.25 51q0 22 8
+        38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0
+        37.25-1.75t35-7.375 30.5-15 20.25-25.75 8-38.375zM416 260q0 51.75-15.25
+        82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5-41.75
+        1.125q-19.5 0-35.5-0.75t-36.875-3.125-38.125-7.5-34.25-12.875-30.25-20.25-21.5-28.75q-15.5-30.75-15.5-82.75
+        0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25
+        30.875q36.75-8.75 77.25-8.75 37 0 70 8 26.25-20.5
+        46.75-30.25t47.25-9.75q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34
+        99.5z" />
+</svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#introduction" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="https://Tony-Y.github.io/cgnn/" title="CGNN" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon">fingerprint</i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              CGNN
+            </span>
+            <span class="md-header-nav__topic">
+              Introduction
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/Tony-Y/cgnn/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Tony-Y/cgnn
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="https://Tony-Y.github.io/cgnn/" title="CGNN" class="md-nav__button md-logo">
+      
+        <i class="md-icon">fingerprint</i>
+      
+    </a>
+    CGNN
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/Tony-Y/cgnn/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Tony-Y/cgnn
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      User Guide
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        User Guide
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Introduction
+      </label>
+    
+    <a href="./" title="Introduction" class="md-nav__link md-nav__link--active">
+      Introduction
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#crystal-graphs" title="Crystal Graphs" class="md-nav__link">
+    Crystal Graphs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataset" title="Dataset" class="md-nav__link">
+    Dataset
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#target-values" title="Target Values" class="md-nav__link">
+    Target Values
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-data" title="Graph Data" class="md-nav__link">
+    Graph Data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#node-vectors" title="Node Vectors" class="md-nav__link">
+    Node Vectors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-splitting" title="Data Splitting" class="md-nav__link">
+    Data Splitting
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../architectures/" title="Architectures" class="md-nav__link">
+      Architectures
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../configuration/" title="Configuration" class="md-nav__link">
+      Configuration
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../license/" title="License" class="md-nav__link">
+      License
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#crystal-graphs" title="Crystal Graphs" class="md-nav__link">
+    Crystal Graphs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataset" title="Dataset" class="md-nav__link">
+    Dataset
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#target-values" title="Target Values" class="md-nav__link">
+    Target Values
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph-data" title="Graph Data" class="md-nav__link">
+    Graph Data
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#node-vectors" title="Node Vectors" class="md-nav__link">
+    Node Vectors
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-splitting" title="Data Splitting" class="md-nav__link">
+    Data Splitting
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/Tony-Y/cgnn/edit/master/docs/introduction.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h1>
+<p>Interacting systems, molecules, and biopolymers can be represented topologically as graphs. A crystalline material may be represented topologically as a multi-graph, which is called a crystal graph. A method to create crystal graphs is proposed in the CGNN paper, and its Python implementation (<code>tools/mp_graph.py</code>) is available from the repository <a href="https://github.com/Tony-Y/cgnn" target="_blank">Tony-Y/cgnn</a>.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>The structure (left) and crystal graph (right) for a form of <span><span class="MathJax_Preview">\mathrm{SiO}_{2}</span><script type="math/tex">\mathrm{SiO}_{2}</script></span>:</p>
+<p><img alt="Crystal Structure of SiO2" src="../images/structure-SiO2.png" style="height:250px" />
+<img alt="Crystal Graph of SiO2" src="../images/graph-SiO2.png" /></p>
+</div>
+<h2 id="crystal-graphs">Crystal Graphs<a class="headerlink" href="#crystal-graphs" title="Permanent link">&para;</a></h2>
+<p>A crystal graph is composed of a set of nodes and a multi-set of directed edges. Given a sequence of nodes with a label, the <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span>-th node's label can be mapped to an integer <span><span class="MathJax_Preview">k_{i} \in [0\mathrel{{.}\,{.}}K-1]</span><script type="math/tex">k_{i} \in [0\mathrel{{.}\,{.}}K-1]</script></span>, where <span><span class="MathJax_Preview">K</span><script type="math/tex">K</script></span> denotes the number of node species, and then the node sequence can be encoded into an integer sequence <span><span class="MathJax_Preview">\{ k_{i} \}_{i=1}^{N}</span><script type="math/tex">\{ k_{i} \}_{i=1}^{N}</script></span>, where <span><span class="MathJax_Preview">N</span><script type="math/tex">N</script></span> denotes the number of nodes. Since a directed edge is defined by a source and target node, the multi-set of nodes neighboring the <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span>-th node is defined by the complete multi-set of target nodes for the <span><span class="MathJax_Preview">i</span><script type="math/tex">i</script></span>-th node serving as a source node, and can be encoded into the index list of the target nodes <span><span class="MathJax_Preview">\mathcal{N}_{i}</span><script type="math/tex">\mathcal{N}_{i}</script></span>. Thus, the crystal graph may be represented by the pair of the integer sequence and the sequence of the neighbor lists <span><span class="MathJax_Preview">(\{ k_{i} \}_{i=1}^{N}, \{ \mathcal{N}_{i} \}_{i=1}^{N})</span><script type="math/tex">(\{ k_{i} \}_{i=1}^{N}, \{ \mathcal{N}_{i} \}_{i=1}^{N})</script></span>.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>The OQMD contains 89 chemical elements (1 to 83, and 89 to 94 in atomic number), which can be labeled with integer numbers <span><span class="MathJax_Preview">k \in [0\mathrel{{.}\,{.}}88]</span><script type="math/tex">k \in [0\mathrel{{.}\,{.}}88]</script></span> in the ascending order of atomic number. Since the atomic numbers of Si and O are 14 and 8, respectively, the crystal graph of <span><span class="MathJax_Preview">\mathrm{SiO}_{2}</span><script type="math/tex">\mathrm{SiO}_{2}</script></span> in the previous example is represented by the pair of the integer sequence
+<div class="codehilite"><pre><span></span>[13, 13, 7, 7, 7, 7]
+</pre></div>
+and the list of neighbor lists
+<div class="codehilite"><pre><span></span>[
+ [2, 3, 4, 5],
+ [2, 3, 4, 5],
+ [0, 1],
+ [0, 1],
+ [0, 1],
+ [0, 1],
+]
+</pre></div></p>
+</div>
+<p>Node species may have some features including its integer label. The node vector can be made from those features, and thus we have the set of <span><span class="MathJax_Preview">K</span><script type="math/tex">K</script></span> node vectors. The integer sequence <span><span class="MathJax_Preview">\{ k_{i} \}_{i=1}^{N}</span><script type="math/tex">\{ k_{i} \}_{i=1}^{N}</script></span> is mapped to a sequence of vectors <span><span class="MathJax_Preview">\{ v_{i} \}_{i=1}^{N}</span><script type="math/tex">\{ v_{i} \}_{i=1}^{N}</script></span>, where <span><span class="MathJax_Preview">v_{i} \in \mathbb{R}^{d_{v}}</span><script type="math/tex">v_{i} \in \mathbb{R}^{d_{v}}</script></span> is the <span><span class="MathJax_Preview">k_{i}</span><script type="math/tex">k_{i}</script></span>-th node vector. The sequence of node vectors is used as an input for a CGNN model.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>If the materials dataset used has only 3 chemical elements, Ti (titanium), O (oxygen), and S (sulfur), their node vectors can be represented using the one-hot encoding as follows:
+<div class="codehilite"><pre><span></span>Ti : [1, 0, 0]
+O  : [0, 1, 0]
+S  : [0, 0, 1]
+</pre></div>
+Then, using the indexing
+$$
+\mathrm{Ti} \to 0; \mathrm{O} \to 1; \mathrm{S} \to 2
+$$
+the list of node vectors is given by the following:
+<div class="codehilite"><pre><span></span>[
+  [1, 0, 0],
+  [0, 1, 0],
+  [0, 0, 1],
+]
+</pre></div>
+Elemental properties, which are available from a chemical elements database (<em>e.g.</em>, <a href="https://www.webelements.com">WebElements</a>), can be added to the node vectors as numerical features. For instance, the Pauling electronegativity for each element, obtained from WebElements, is shown below:</p>
+<table>
+<thead>
+<tr>
+<th>Element</th>
+<th align="right">Electronegativity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ti</td>
+<td align="right">1.54</td>
+</tr>
+<tr>
+<td>O</td>
+<td align="right">3.44</td>
+</tr>
+<tr>
+<td>S</td>
+<td align="right">2.58</td>
+</tr>
+</tbody>
+</table>
+<p>When the electronegativity is added to the node vector, the list of node vectors is given by the following:
+<div class="codehilite"><pre><span></span>[
+  [1, 0, 0, 1.54],
+  [0, 1, 0, 3.44],
+  [0, 0, 1, 2.58],
+]
+</pre></div></p>
+</div>
+<h2 id="dataset">Dataset<a class="headerlink" href="#dataset" title="Permanent link">&para;</a></h2>
+<p>The CGNN program needs the following files:</p>
+<ul>
+<li><code>targets.csv</code> consists of all target values.</li>
+<li><code>graph_data.npz</code> composed of all node and neighbor lists of graphs.</li>
+<li><code>config.json</code> defines node vectors.</li>
+<li><code>split.json</code> defines data splitting (train/val/test).</li>
+</ul>
+<h3 id="target-values">Target Values<a class="headerlink" href="#target-values" title="Permanent link">&para;</a></h3>
+<p><code>targets.csv</code> must have a header row consisting <code>name</code> and target names. The <code>name</code> column must store identifiers like an ID number or string that is unique to each example in the dataset. The target columns must store numerical values excluding <code>NaN</code> and <code>None</code>.</p>
+<h3 id="graph-data">Graph Data<a class="headerlink" href="#graph-data" title="Permanent link">&para;</a></h3>
+<p>You can create a graph data file (<code>graph_data.npz</code>) as follows:
+<div class="codehilite"><pre><span></span><span class="n">graphs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">structure</span> <span class="ow">in</span> <span class="n">dataset</span><span class="p">:</span>
+    <span class="n">nodes</span> <span class="o">=</span> <span class="o">...</span> <span class="c1"># A species-index list</span>
+    <span class="n">neighbors</span> <span class="o">=</span> <span class="o">...</span> <span class="c1"># A list of neighbor lists</span>
+    <span class="n">graphs</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">neighbors</span><span class="p">)</span>
+<span class="n">np</span><span class="o">.</span><span class="n">savez_compressed</span><span class="p">(</span><span class="s1">&#39;graph_data.npz&#39;</span><span class="p">,</span> <span class="n">graph_dict</span><span class="o">=</span><span class="n">graphs</span><span class="p">)</span>    
+</pre></div>
+where the object <code>structure</code> stores structural information used to create a graph with
+<code>nodes</code> <span><span class="MathJax_Preview">\{ k_{i} \}_{i=1}^{N}</span><script type="math/tex">\{ k_{i} \}_{i=1}^{N}</script></span> and <code>neighbors</code> <span><span class="MathJax_Preview">\{ \mathcal{N}_{i} \}_{i=1}^{N}</span><script type="math/tex">\{ \mathcal{N}_{i} \}_{i=1}^{N}</script></span>,
+and <code>name</code> is the same identifier as in <code>targets.csv</code> for each example.</p>
+<h3 id="node-vectors">Node Vectors<a class="headerlink" href="#node-vectors" title="Permanent link">&para;</a></h3>
+<p>You can create a configuration file (<code>config.json</code>) as follows:
+<div class="codehilite"><pre><span></span><span class="n">config</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="n">config</span><span class="p">[</span><span class="s2">&quot;node_vectors&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span> <span class="c1"># A list of node feature lists</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;config.json&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">config</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</pre></div></p>
+<p>When using the one-hot encoding, the node vectors are given by
+<div class="codehilite"><pre><span></span><span class="n">config</span><span class="p">[</span><span class="s2">&quot;node_vectors&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n_species</span><span class="p">,</span><span class="n">n_species</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+</pre></div>
+where <code>n_species</code> denotes the number of node species, <span><span class="MathJax_Preview">K</span><script type="math/tex">K</script></span>.</p>
+<h3 id="data-splitting">Data Splitting<a class="headerlink" href="#data-splitting" title="Permanent link">&para;</a></h3>
+<p>You can create a data-splitting file (<code>split.json</code>) as follows:
+<div class="codehilite"><pre><span></span><span class="n">split</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="n">split</span><span class="p">[</span><span class="s2">&quot;train&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span> <span class="c1"># The index list for the training set</span>
+<span class="n">split</span><span class="p">[</span><span class="s2">&quot;val&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span> <span class="c1"># The index list for the validation set</span>
+<span class="n">split</span><span class="p">[</span><span class="s2">&quot;test&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="o">...</span> <span class="c1"># The index list for the testing set</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;split.json&quot;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">split</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</pre></div>
+where the index, which must be a non-negative integer, is a row label of the data frame that the CSV file <code>targets.csv</code> is read into.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href=".." title="Home" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Home
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../architectures/" title="Architectures" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Architectures
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2019 Takenori Yamamoto
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/Tony-Y" class="md-footer-social__link fa fa-github"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.39abc4af.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>
