@@ -76,9 +76,11 @@ bash run_oqmd.sh >& log_oqmd &
 ## Results
 
 **Training histories**
+
 ![Training histories](../figs/fig_training_histories.png)
 
 **Testing errors for the formation energy predictions, and training speeds and times**
+
 | Model      | RMSE (meV) | MAE (meV)  | Speed (examples/sec) | Time   |
 |------------|-----------:|-----------:|---------------------:|-------:|
 | Benchmark  |       86.8 |       43.5 |                13868 | 2h 42m |
@@ -90,24 +92,30 @@ bash run_oqmd.sh >& log_oqmd &
 The benchmark, no-EdgeNet, and complete models were trained on a single GeForce GTX 1080 GPU. The ensemble prediction is the average of three predictions computed by those  models. The database error is the formation energy difference between the OQMD and the Materials Project entry, as described in the CGNN paper. The formation energy errors are expressed in milli-electron volts (meV).
 
 **Testing errors for the volume deviation predictions**
+
 | Model      | RMSE   | MAE    |
 |------------|-------:|-------:|
 | No EdgeNet | 0.0319 | 0.0175 |
 | Database   | 0.0421 | 0.0270 |
+
 The volume deviation is defined by 1 - Va/Vc, where Va denotes the total atomic volume, and Vc denotes the cell volume.
 
 **Testing errors for the band gap predictions**
+
 | Model      | RMSE   | MAE    |
 |------------|-------:|-------:|
 | No EdgeNet | 0.2602 | 0.0502 |
 | Database   | 0.5288 | 0.1806 |
+
 The band gap errors are expressed in electron volts.
 
-**Testing errors for the total magnetization predictions**  
+**Testing errors for the total magnetization predictions**
+
 | Model      | RMSE   | MAE    |
 |------------|-------:|-------:|
 | No EdgeNet | 0.1978 | 0.0826 |
 | Database   | 0.4003 | 0.0938 |
+
 The total magnetization errors are expressed in Bohr magnetons per atom.
 
 Note that we could obtain results slightly different from the paper's ones, especially in the RMSE metric, because the splitting of the OQMD dataset differs between this repository and the CGNN paper.
