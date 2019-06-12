@@ -1,5 +1,8 @@
 # Crystal Graph Neural Networks
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/crystal-graph-neural-networks-for-data-mining/formation-energy-on-oqmd-v12)](https://paperswithcode.com/sota/formation-energy-on-oqmd-v12?p=crystal-graph-neural-networks-for-data-mining)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/crystal-graph-neural-networks-for-data-mining/band-gap-on-oqmd-v12)](https://paperswithcode.com/sota/band-gap-on-oqmd-v12?p=crystal-graph-neural-networks-for-data-mining)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/crystal-graph-neural-networks-for-data-mining/total-magnetization-on-oqmd-v12)](https://paperswithcode.com/sota/total-magnetization-on-oqmd-v12?p=crystal-graph-neural-networks-for-data-mining)
 
 This repository contains the original implementation of the CGNN architectures described in the paper ["Crystal Graph Neural Networks for Data Mining in Materials Science"](https://storage.googleapis.com/rimcs_cgnn/cgnn_matsci_May_27_2019.pdf).
 
