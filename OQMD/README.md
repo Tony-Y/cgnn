@@ -42,7 +42,7 @@ Next, create the environment `qmpy` as follows:
 conda create --name qmpy
 conda install -n qmpy -c matsci pymatgen scikit-learn python=2.7
 source activate  qmpy
-pip install qmpy
+pip install qmpy==1.2.0
 pip install pydash tqdm joblib
 ```
 
