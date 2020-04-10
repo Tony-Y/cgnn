@@ -31,10 +31,11 @@ mysql> CREATE DATABASE oqmd_v1_2;
 Then, restore the downloaded data to the empty database.
 
 ```
-zcat qmdb__v1_2__062018.sql.gz | mysql -u $USER -p $PASSWORD oqmd_v1_2
+> zcat qmdb__v1_2__062018.sql.gz | mysql -u $USER -p oqmd_v1_2
+[Enter your MySQL password]
 ```
 
-where `$USER` is your username and `$PASSWORD` is your MySQL password. The database finally grows approximate 80 GB, but the intermediate stages need larger storage (*ca.* 200 GB).
+where `$USER` is your username. The database finally grows approximate 80 GB, but the intermediate stages need larger storage (*ca.* 200 GB).
 
 Next, create the environment `qmpy` as follows:
 
