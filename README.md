@@ -136,7 +136,7 @@ python ${CGNN_HOME}/src/cgnn.py \
 ```
 
 ## The Open Quantum Materials Database
-The OQMD v1.2 contains 563k entries, and is available from [the OQMD site](http://oqmd.org). The detail setup of the database is described in the README in the directory `cgnn/OQMD`.
+The OQMD v1.2 contains 563k entries, and is available from [the OQMD site](http://oqmd.org). The detail setup of the database is described in the README in the directory `cgnn/OQMD`. Alternatively, you may use the OQMD v1.2 dataset available from [this link](https://drive.google.com/file/d/1I6nS4l15SeX5S4VcU3jKG5Iqvomj7eXB/view?usp=sharing).
 
 ## Citation
 When you mention this work, please cite [the CGNN paper](https://storage.googleapis.com/rimcs_cgnn/cgnn_matsci_May_27_2019.pdf):
