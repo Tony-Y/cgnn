@@ -32,9 +32,9 @@ def load_target(target_name, file_path):
 
 def load_graph_data(file_path):
     try:
-        graphs = np.load(file_path)['graph_dict'].item()
+        graphs = np.load(file_path, allow_pickle=True)['graph_dict'].item()
     except UnicodeError:
-        graphs = np.load(file_path, encoding='latin1')['graph_dict'].item()
+        graphs = np.load(file_path, allow_pickle=True, encoding='latin1')['graph_dict'].item()
         graphs = { k.decode() : v for k, v in graphs.items() }
     return graphs
 
