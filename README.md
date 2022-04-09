@@ -15,7 +15,7 @@ Note that the crystal graph represents only a repeating unit of [a periodic grap
 ## Requirements
 
 * Python 3.7
-* PyTorch 1.0
+* PyTorch 1.1+
 * Pandas
 * Matplotlib (necessary for plotting scripts)
 

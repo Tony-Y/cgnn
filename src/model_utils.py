@@ -123,8 +123,6 @@ class Model(object):
         for epoch in range(num_epochs):
             epoch_since = time.time()
             print('Epoch {}/{}'.format(epoch, num_epochs - 1), flush=True)
-
-            self.scheduler.step()
             print('current lr:', self.optimizer.param_groups[0]['lr'])
 
             train_val_metrics = []
@@ -148,6 +146,7 @@ class Model(object):
                     checkpoint.check(metric)
                 train_val_metrics += [('_'.join([phase, name]), metric) for name, metric in epoch_metrics]
             history.write(epoch, train_val_metrics)
+            self.scheduler.step()
             time_elapsed = time.time() - epoch_since
             print('Elapsed time (sec.): {:.3f}'.format(time_elapsed))
             print()
