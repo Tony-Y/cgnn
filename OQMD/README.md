@@ -1,7 +1,7 @@
 # The Open Quantum Materials Database (OQMD)
-If you want to use the OQMD as a dataset for training CGNN models, you need a conda environment with the [qmpy](https://github.com/wolverton-research-group/qmpy) installed. [pymatgen](http://pymatgen.org) is also necessary for the use of the data format of the Materials Project. Because the OQMD uses MySQL, first install it.
+If you want to use the OQMD as a dataset for training CGNN models, you need a conda environment with the [qmpy](https://github.com/wolverton-research-group/qmpy) installed. [pymatgen](http://pymatgen.org) is also necessary for the use of the data format of the Materials Project. Because the OQMD uses MySQL 5.7, first install it.
 
-If your Linux OS is Ubuntu, you can install MySQL as follows:
+If your Linux OS is Ubuntu 16.04 or 18.04, you can install MySQL 5.7 as follows:
 
 ```
 sudo apt install mysql-server mysql-client libmysqlclient-dev
