@@ -33,6 +33,11 @@ CGNN_HOME=`pwd`/cgnn
 pip install torch==1.10.2+cu113 -f https://download.pytorch.org/whl/torch_stable.html
 ```
 
+### How to install pytorch_warmup
+```
+pip install -U pytorch_warmup
+```
+
 ## Usage
 
 The user guide in [this GitHub Pages site](https://Tony-Y.github.io/cgnn/) provides the complete explanation of the CGNN architectures, and the description of program options. Usage examples are contained in the directory `cgnn/examples`.
