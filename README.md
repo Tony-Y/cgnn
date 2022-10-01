@@ -28,6 +28,11 @@ git clone https://github.com/Tony-Y/cgnn.git
 CGNN_HOME=`pwd`/cgnn
 ```
 
+### How to install PyTorch 1.10.2 with CUDA 10.2
+```
+pip install torch==1.10.2+cu102 -f https://download.pytorch.org/whl/torch_stable.html
+```
+
 ### How to install PyTorch 1.10.2 with CUDA 11.3
 ```
 pip install torch==1.10.2+cu113 -f https://download.pytorch.org/whl/torch_stable.html

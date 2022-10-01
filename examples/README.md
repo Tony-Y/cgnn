@@ -126,7 +126,7 @@ Note that we could obtain results slightly different from the paper's ones, espe
 
 # Results by CGNN v1.1
 
-The CGNN models were trained on a single Nvidia P100 GPU.
+The CGNN models were trained using PyTorh 1.10.2 with CUDA 11.3 on a single Nvidia P100 GPU.
 
 **Testing errors of formation energy**
 | Dataset | Model      | RMSE (meV) | MAE (meV)  | Time   |
