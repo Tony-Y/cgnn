@@ -1,4 +1,4 @@
-#   Copyright 2019 Takenori Yamamoto
+#   Copyright 2019-2022 Takenori Yamamoto
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -92,13 +92,19 @@ class NodeEmbedding(Module):
     """
     Node Embedding layer
     """
-    def __init__(self, in_features, out_features):
+    def __init__(self, in_features, out_features, node_vectors=None):
         super(NodeEmbedding, self).__init__()
         self.in_features = in_features
         self.out_features = out_features
         self.linear = Linear(in_features, out_features, bias=False)
+        if node_vectors is not None:
+            self.node_vectors = torch.tensor(node_vectors, dtype=torch.float32)
+        else:
+            self.node_vectors = None
 
     def forward(self, input):
+        if self.node_vectors is not None:
+            input = F.embedding(input, self.node_vectors)
         output = self.linear(input)
         return output
 

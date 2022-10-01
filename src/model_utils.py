@@ -1,4 +1,4 @@
-#   Copyright 2019 Takenori Yamamoto
+#   Copyright 2019-2022 Takenori Yamamoto
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 from torch.nn.utils import clip_grad_value_
+from torch.utils.tensorboard import SummaryWriter
 
 class Metric(object):
     def __init__(self, metric_fn, name):
@@ -71,6 +72,8 @@ class Checkpoint(object):
         self.best_weights = model.weights
 
     def check(self, metric):
+        if np.isnan(metric):
+            return
         if self.best_metric is None or metric < self.best_metric:
             self.best_metric = metric
             self.best_weights = self.model.weights
@@ -79,14 +82,28 @@ class Checkpoint(object):
         self.model.weights = self.best_weights
 
 class Model(object):
-    def __init__(self, device, model, optimizer, scheduler, clip_value=None,
-                 metrics=[('loss', nn.MSELoss()), ('mae', nn.L1Loss())]):
+    def __init__(self, device, model, optimizer, lr_scheduler, warmup_scheduler, clip_value=None,
+                 summary_writer=False, sw_step_interval=1, metrics=[('loss', nn.MSELoss()), ('mae', nn.L1Loss())]):
         self.model = model.to(device)
+        self.model.embedding.node_vectors = self.model.embedding.node_vectors.to(device)
         self.optimizer = optimizer
-        self.scheduler = scheduler
+        self.lr_scheduler = lr_scheduler
+        self.warmup_scheduler = warmup_scheduler
         self.metrics = [Metric(metric, name) for name, metric in metrics]
         self.device = device
         self.clip_value = clip_value
+        self.use_summary_writer = summary_writer
+        self.sw_step_interval = sw_step_interval
+
+        if self.warmup_scheduler is None:
+            def lr_step(lr_scheduler, warmup_scheduler):
+                lr_scheduler.step()
+            self.lr_step = lr_step
+        else:
+            def lr_step(lr_scheduler, warmup_scheduler):
+                lr_scheduler.step(lr_scheduler.last_epoch+1)
+                warmup_scheduler.dampen()
+            self.lr_step = lr_step
 
     def _set_mode(self, phase):
         if phase == 'train':
@@ -94,7 +111,21 @@ class Model(object):
         else:
             self.model.eval()   # Set model to evaluate mode
 
-    def _process_batch(self, input, targets, phase):
+    def _write_train_scalers(self, writer, metric_tensors):
+        global_step = self.lr_scheduler.last_epoch+1
+        if (global_step % self.sw_step_interval) == 0:
+            lr = self.optimizer.param_groups[0]['lr']
+            writer.add_scalar("learning rate", lr, global_step)
+            for name, tensor in metric_tensors.items():
+                writer.add_scalar(name+'/train', tensor.item(), global_step)
+
+    def _write_val_scalers(self, writer, epoch_metrics, upper_limit=1.0):
+        global_step = self.lr_scheduler.last_epoch
+        for name, scalar in epoch_metrics:
+            if scalar <= upper_limit:
+                writer.add_scalar(name+'/val', scalar, global_step)
+
+    def _process_batch(self, input, targets, phase, writer=None):
         input = input.to(self.device)
         targets = targets.to(self.device)
 
@@ -102,15 +133,18 @@ class Model(object):
 
         with torch.set_grad_enabled(phase == 'train'):
             outputs = self.model(input)
-            metric_tensors = [metric.add_batch_metric(outputs, targets) for metric in self.metrics]
+            metric_tensors = {metric.name : metric.add_batch_metric(outputs, targets) for metric in self.metrics}
 
             # backward + optimize only if in training phase
             if phase == 'train':
-                loss = metric_tensors[0]
+                if writer is not None:
+                    self._write_train_scalers(writer, metric_tensors)
+                loss = metric_tensors['loss']
                 loss.backward()
                 if self.clip_value is not None:
                     clip_grad_value_(self.model.parameters(), self.clip_value)
                 self.optimizer.step()
+                self.lr_step(self.lr_scheduler, self.warmup_scheduler)
 
         return metric_tensors, outputs
 
@@ -119,6 +153,7 @@ class Model(object):
 
         dataloaders = {'train': train_dl, 'val': val_dl}
         history = History()
+        writer = SummaryWriter() if self.use_summary_writer else None
         checkpoint = Checkpoint(self)
         for epoch in range(num_epochs):
             epoch_since = time.time()
@@ -135,22 +170,25 @@ class Model(object):
                 for input, targets in dataloaders[phase]:
                     ##nb += 1
                     ##if (nb % 100) == 0: print(nb)
-                    _, outputs = self._process_batch(input, targets, phase)
+                    _, outputs = self._process_batch(input, targets, phase, writer)
 
                 epoch_metrics = [(metric.name, metric.get_total_metric()) for metric in self.metrics]
                 text = ' '.join(['{}: {:.4f}'.format(name, metric) for name, metric in epoch_metrics])
                 print('{} {}'.format(phase, text))
 
                 if phase == 'val':
+                    if self.use_summary_writer:
+                        self._write_val_scalers(writer, epoch_metrics)
                     metric = epoch_metrics[1][1]
                     checkpoint.check(metric)
                 train_val_metrics += [('_'.join([phase, name]), metric) for name, metric in epoch_metrics]
             history.write(epoch, train_val_metrics)
-            self.scheduler.step()
             time_elapsed = time.time() - epoch_since
             print('Elapsed time (sec.): {:.3f}'.format(time_elapsed))
             print()
         history.close()
+        if self.use_summary_writer:
+            writer.close()
 
         if num_epochs > 0:
             time_elapsed = time.time() - since

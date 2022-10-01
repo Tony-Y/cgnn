@@ -14,16 +14,23 @@ Note that the crystal graph represents only a repeating unit of [a periodic grap
 
 ## Requirements
 
-* Python 3.7
-* PyTorch 1.1+
+* Python 3.7+
+* PyTorch 1.10.2
+* [pytorch_warmup](https://github.com/Tony-Y/pytorch_warmup)
 * Pandas
 * Matplotlib (necessary for plotting scripts)
+* TensorBoard (optional, necessary for visualizing outputs of Summary Writer)
 
 ## Installation
 
 ```
 git clone https://github.com/Tony-Y/cgnn.git
 CGNN_HOME=`pwd`/cgnn
+```
+
+### How to install PyTorch 1.10.2 with CUDA 11.3
+```
+pip install torch==1.10.2+cu113 -f https://download.pytorch.org/whl/torch_stable.html
 ```
 
 ## Usage
@@ -140,6 +147,12 @@ The OQMD v1.2 contains 563k entries, and is available from [the OQMD site](http:
 
 *Note that there is an abnormal entry in this dataset. The information is available at [this page](https://github.com/Tony-Y/oqmd-v1.2-dataset-for-cgnn#abnormal-entry).*
 
+## The OQM9HK Graph Dataset
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7124330.svg)](https://doi.org/10.5281/zenodo.7124330)
+
+[The OQM9HK graph dataset](https://doi.org/10.5281/zenodo.7124330) is based on the OQMD v1.5, and contains about 900k entries.
+The technical report about this dataset is downloadable from [this link](https://storage.googleapis.com/rimcs_cgnn/oqm9hk_dataset_Sep_30_2022.pdf).
+
 ## Citation
 When you mention this work, please cite [the CGNN paper](https://storage.googleapis.com/rimcs_cgnn/cgnn_matsci_May_27_2019.pdf):
 ```
@@ -153,6 +166,18 @@ When you mention this work, please cite [the CGNN paper](https://storage.googlea
 }
 ```
 
+How to cite [the OQM9HK paper](https://storage.googleapis.com/rimcs_cgnn/oqm9hk_dataset_Sep_30_2022.pdf):
+```
+@techreport{yamamoto2022oqm9hk,
+  Author = {Takenori Yamamoto},
+  Title = {OQM9HK: A Large-Scale Graph Dataset for Machine Learning in Materials Science},
+  Address = {Yokohama, Japan},
+  Institution = {Research Institute for Mathematical and Computational Sciences, LLC},
+  Year = {2022},
+  Note = {https://doi.org/10.5281/zenodo.7124330}
+}
+```
+
 ## References
 
 1. <a name="Gilmer2017">Justin Gilmer</a>, *et al.*, "Neural Message Passing for Quantum Chemistry", *Proceedings of the 34th International Conference on Machine Learning* (2017) [arXiv](https://arxiv.org/abs/1704.01212) [GitHub](https://github.com/brain-research/mpnn)
@@ -163,4 +188,4 @@ When you mention this work, please cite [the CGNN paper](https://storage.googlea
 
 Apache License 2.0
 
-(c) 2019 Takenori Yamamoto
+(c) 2019-2022 Takenori Yamamoto

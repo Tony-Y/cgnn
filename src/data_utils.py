@@ -1,4 +1,4 @@
-#   Copyright 2019 Takenori Yamamoto
+#   Copyright 2019-2022 Takenori Yamamoto
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -25,7 +25,7 @@ from torch.utils.data import Dataset
 from models import GGNNInput
 
 def load_target(target_name, file_path):
-    df = pd.read_csv(file_path)
+    df = pd.read_csv(file_path, usecols=["name", target_name])
     graph_names = df["name"].values
     targets = df[target_name].values
     return graph_names, targets
@@ -38,20 +38,66 @@ def load_graph_data(file_path):
         graphs = { k.decode() : v for k, v in graphs.items() }
     return graphs
 
+def get_num_edge_labels(graphs):
+    graph = next(iter(graphs.values()))
+    if len(graph) == 2: # Version 1
+        _, neighbors = graph
+        if isinstance(neighbors, tuple):
+            return len(neighbors)
+        else:
+            return 1
+    else: # Version 2
+        type_counts = graph[1]
+        return len(type_counts)
+
 class Graph(object):
-    def __init__(self, graph, node_vectors):
-        self.nodes, self.neighbors = graph
-        self.neighbors = list(self.neighbors)
+    __slots__ = ['nodes', 'edge_sources', 'edge_targets']
+    def __init__(self, graph, num_edge_labels):
+        if len(graph) == 2:
+            self._process_v1(graph, num_edge_labels)
+        else:
+            self._process_v2(graph, num_edge_labels)
+    
+    def _process_v1(self, graph, num_edge_labels):
+        self.nodes, neighbors = graph
+        if num_edge_labels > 1:
+            neighbors = [list(neighbors[i]) for i in range(num_edge_labels)]
+        else:
+            neighbors = [list(neighbors)]
 
-        n_types = len(node_vectors)
+        self.nodes = np.array(self.nodes, dtype=int)
+
         n_nodes = len(self.nodes)
+        dtype = np.int64
+        self.edge_sources, self.edge_targets = [], []
+        for nbrs in neighbors:
+            nbrs = [np.zeros(0, dtype=dtype) if x is None else np.array(x, dtype=dtype) for x in nbrs]
+            self.edge_sources.append(
+                    np.concatenate([np.array([i] * len(nbrs[i]), dtype=dtype) for i in range(n_nodes)])
+                )
+            self.edge_targets.append(np.concatenate(nbrs))
+    
+    def _process_v2(self, graph, num_edge_labels):
+        self.nodes, type_counts, neighbor_counts, neighbors = graph
+        neighbor_counts = neighbor_counts.reshape(num_edge_labels,-1)
+        
+        self.nodes = np.array(self.nodes, dtype=int)
 
-        # Make node representations
-        self.nodes = [node_vectors[i] for i in self.nodes]
-
-        self.nodes = np.array(self.nodes, dtype=np.float32)
-        self.edge_sources = np.concatenate([[i] * len(self.neighbors[i]) for i in range(n_nodes)])
-        self.edge_targets = np.concatenate(self.neighbors)
+        n_nodes = len(self.nodes)
+        dtype = np.int64
+        
+        self.edge_sources= []
+        for nbc in neighbor_counts:
+            src = [np.full(c, node, dtype=dtype) for node, c in enumerate(nbc)]
+            self.edge_sources.append(np.concatenate(src))
+        
+        self.edge_targets = []
+        s = 0
+        for c in type_counts:
+            e = s + c
+            tgt = neighbors[s:e].astype(dtype)
+            self.edge_targets.append(tgt)
+            s = e
 
     def __len__(self):
         return len(self.nodes)
@@ -68,9 +114,13 @@ class GraphDataset(Dataset):
             config = json.load(f)
         self.node_vectors = config["node_vectors"]
         graph_data_path = os.path.join(path, "graph_data.npz")
-        self.graph_data = load_graph_data(graph_data_path)
-        self.graph_data = [Graph(self.graph_data[name], self.node_vectors)
-                           for name in self.graph_names]
+        graph_data = load_graph_data(graph_data_path)
+        self.num_edge_labels = get_num_edge_labels(graph_data)
+        self.graph_data = []
+        for name in self.graph_names:
+            graph = Graph(graph_data[name], self.num_edge_labels)
+            self.graph_data.append(graph)
+            del graph_data[name]
 
     def __getitem__(self, index):
         return self.graph_data[index], self.targets[index]
@@ -78,27 +128,29 @@ class GraphDataset(Dataset):
     def __len__(self):
         return len(self.graph_names)
 
-def graph_collate(batch):
+def graph_collate(batch, num_edge_labels):
     nodes = []
-    edge_sources = []
-    edge_targets = []
+    edge_sources = [[] for _ in range(num_edge_labels)]
+    edge_targets = [[] for _ in range(num_edge_labels)]
     graph_indices = []
     node_counts = []
     targets = []
     total_count = 0
     for i, (graph, target) in enumerate(batch):
         nodes.append(graph.nodes)
-        edge_sources.append(graph.edge_sources + total_count)
-        edge_targets.append(graph.edge_targets + total_count)
+        for j in range(num_edge_labels):
+            edge_sources[j].append(graph.edge_sources[j] + total_count)
+            edge_targets[j].append(graph.edge_targets[j] + total_count)
         graph_indices += [i] * len(graph)
         node_counts.append(len(graph))
         targets.append(target)
         total_count += len(graph)
 
     nodes = np.concatenate(nodes)
-    edge_sources = np.concatenate(edge_sources)
-    edge_targets = np.concatenate(edge_targets)
+    for j in range(num_edge_labels):
+        edge_sources[j] = np.concatenate(edge_sources[j])
+        edge_targets[j] = np.concatenate(edge_targets[j])
 
     input = GGNNInput(nodes, edge_sources, edge_targets, graph_indices, node_counts)
-    targets = torch.Tensor(targets)
+    targets = torch.tensor(targets, dtype=torch.float32)
     return input, targets

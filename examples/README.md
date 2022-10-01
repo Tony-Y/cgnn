@@ -77,6 +77,7 @@ bash run_oqmd.sh >& log_oqmd &
 ```
 
 ## Results
+(These results were obtained using CGNN v1.0)
 
 **Training histories**
 
@@ -123,4 +124,34 @@ The total magnetization errors are expressed in Bohr magnetons per atom.
 
 Note that we could obtain results slightly different from the paper's ones, especially in the RMSE metric, because the splitting of the OQMD dataset differs between this repository and the CGNN paper.
 
-(c) 2019 Takenori Yamamoto
+# Results by CGNN v1.1
+
+The CGNN models were trained on a single Nvidia P100 GPU.
+
+**Testing errors of formation energy**
+| Dataset | Model      | RMSE (meV) | MAE (meV)  | Time   |
+| ------- |------------|-----------:|-----------:|-------:|
+| OQMD    | Benchmark  |       89.5 |       43.3 | 1h  2m |
+|         | No EdgeNet |       84.9 |       40.8 | 1h 17m |
+|         | Complete   |       84.6 |       38.9 | 1h 33m |
+| OQM9HK  | Complete   |       94.0 |       45.0 | 4h 54m |
+
+**Testing errors of volume deviation**
+| Dataset | Model      | RMSE   | MAE    |
+| ------- |------------|-------:|-------:|
+| OQMD    | No EdgeNet | 0.0321 | 0.0164 |
+| OQM9HK  | No EdgeNet | 0.0321 | 0.0168 |
+
+**Testing errors of band gap**
+| Dataset | Model      | RMSE   | MAE    |
+| ------- |------------|-------:|-------:|
+| OQMD    | No EdgeNet | 0.2541 | 0.0484 |
+| OQM9HK  | Complete   | 0.3645 | 0.0778 |
+
+**Testing errors of total magnetization**
+| Dataset | Model      | RMSE   | MAE    |
+| ------- |------------|-------:|-------:|
+| OQMD    | No EdgeNet | 0.1974 | 0.0816 |
+| OQM9HK  | No EdgeNet | 0.1880 | 0.0630 |
+
+(c) 2019-2022 Takenori Yamamoto

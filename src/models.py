@@ -1,4 +1,4 @@
-#   Copyright 2019 Takenori Yamamoto
+#   Copyright 2019-2022 Takenori Yamamoto
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -23,19 +23,19 @@ from layers import ( NodeEmbedding, GatedGraphConvolution, GraphPooling,
 
 class GGNNInput(object):
     def __init__(self, nodes, edge_sources, edge_targets, graph_indices, node_counts):
-        self.nodes = torch.Tensor(nodes)
-        self.edge_sources = torch.LongTensor(edge_sources)
-        self.edge_targets = torch.LongTensor(edge_targets)
-        self.graph_indices = torch.LongTensor(graph_indices)
-        self.node_counts = torch.Tensor(node_counts)
+        self.nodes = torch.tensor(nodes, dtype=torch.int64)
+        self.edge_sources = [torch.tensor(x, dtype=torch.int64) for x in edge_sources]
+        self.edge_targets = [torch.tensor(x, dtype=torch.int64) for x in edge_targets]
+        self.graph_indices = torch.tensor(graph_indices, dtype=torch.int64)
+        self.node_counts = torch.tensor(node_counts, dtype=torch.float32)
 
     def __len__(self):
         return self.nodes.size(0)
 
     def to(self, device):
         self.nodes = self.nodes.to(device)
-        self.edge_sources = self.edge_sources.to(device)
-        self.edge_targets = self.edge_targets.to(device)
+        self.edge_sources = [x.to(device) for x in self.edge_sources]
+        self.edge_targets = [x.to(device) for x in self.edge_targets]
         self.graph_indices = self.graph_indices.to(device)
         self.node_counts = self.node_counts.to(device)
 
@@ -52,17 +52,28 @@ class GGNN(nn.Module):
     * Tian Xie, et al., "Crystal Graph Convolutional Neural Networks for an Accurate and
                          Interpretable Prediction of Material Properties", https://arxiv.org/abs/1710.10324
     """
-    def __init__(self, n_node_feat, n_hidden_feat, n_graph_feat, n_conv, n_fc,
+    def __init__(self, n_node_feat, n_edge_labels, n_hidden_feat, n_graph_feat, n_conv, n_fc,
                  activation, use_batch_norm, node_activation, use_node_batch_norm,
                  edge_activation, use_edge_batch_norm, n_edge_net_feat, n_edge_net_layers,
                  edge_net_activation, use_edge_net_batch_norm, use_fast_edge_network,
                  fast_edge_network_type, use_aggregated_edge_network, edge_net_cardinality,
                  edge_net_width, use_edge_net_shortcut, n_postconv_net_layers,
-                 postconv_net_activation, use_postconv_net_batch_norm, conv_type,
+                 postconv_net_activation, use_postconv_net_batch_norm, conv_type, conv_labels,
+                 output_activation, node_vectors,
                  conv_bias=False, edge_net_bias=False, postconv_net_bias=False,
                  full_pooling=False, gated_pooling=False,
                  use_extension=False):
         super(GGNN, self).__init__()
+
+        self.n_edge_labels = n_edge_labels
+        if len(conv_labels) > 0:
+            self.conv_labels = conv_labels
+            n_conv = len(self.conv_labels)
+        else:
+            n_conv *= self.n_edge_labels
+            self.conv_labels = [i % self.n_edge_labels for i in range(n_conv)]
+        print('n_conv:', n_conv)
+        print('conv labels:', self.conv_labels)
 
         act_fn = get_activation(activation)
 
@@ -75,6 +86,11 @@ class GGNN(nn.Module):
             edge_act_fn = get_activation(edge_activation)
         else:
             edge_act_fn = None
+
+        if output_activation is not None:
+            self.output_act_fn = get_activation(output_activation)
+        else:
+            self.output_act_fn = None
 
         postconv_net_act_fn = get_activation(postconv_net_activation)
 
@@ -116,7 +132,7 @@ class GGNN(nn.Module):
                              bias=postconv_net_bias)
                              for i in range(n_conv)]
 
-        self.embedding = NodeEmbedding(n_node_feat, n_hidden_feat)
+        self.embedding = NodeEmbedding(n_node_feat, n_hidden_feat, node_vectors)
         self.convs = [GatedGraphConvolution(n_hidden_feat, n_hidden_feat,
                       node_activation=node_act_fn,
                       edge_activation=edge_act_fn,
@@ -161,14 +177,16 @@ class GGNN(nn.Module):
     def forward(self, input):
         x = self.embedding(input.nodes)
         y = []
-        for conv, pre_pooling in zip(self.convs, self.pre_poolings):
-            x = conv(x, input.edge_sources, input.edge_targets)
+        for conv, label, pre_pooling in zip(self.convs, self.conv_labels, self.pre_poolings):
+            x = conv(x, input.edge_sources[label], input.edge_targets[label])
             if pre_pooling is not None:
                 y.append(pre_pooling(x, input.graph_indices, input.node_counts))
         x = self.pooling(y)
         for fc in self.fcs:
             x = fc(x)
         x = self.regression(x)
+        if self.output_act_fn is not None:
+            x = self.output_act_fn(x)
         if self.extension is not None:
             x = self.extension(x, input.node_counts)
         return x
