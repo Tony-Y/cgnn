@@ -125,6 +125,8 @@ The total magnetization errors are expressed in Bohr magnetons per atom.
 Note that we could obtain results slightly different from the paper's ones, especially in the RMSE metric, because the splitting of the OQMD dataset differs between this repository and the CGNN paper.
 
 # Results by CGNN v1.1
+You can see a training result at this [Kaggle Notebook](https://www.kaggle.com/code/tonyyy/cgnn-dev-v1-1-oqm9hk).
+If you try to train a CGNN model, click on the "copy & edit" button on this notebook and run your copy.
 
 The CGNN models were trained using PyTorh 1.10.2 with CUDA 11.3 on a single Nvidia P100 GPU.
 
@@ -153,5 +155,8 @@ The CGNN models were trained using PyTorh 1.10.2 with CUDA 11.3 on a single Nvid
 | ------- |------------|-------:|-------:|
 | OQMD    | No EdgeNet | 0.1974 | 0.0816 |
 | OQM9HK  | No EdgeNet | 0.1880 | 0.0630 |
+
+**TensorBoard of training a complete CGNN model on the OQM9HK dataset for formation energy**
+![TensorBoard](../figs/TensorBoard_CGNN_dev_v1_1_OQM9HK.png)
 
 (c) 2019-2022 Takenori Yamamoto
