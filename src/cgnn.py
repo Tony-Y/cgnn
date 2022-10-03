@@ -37,16 +37,24 @@ def use_setpLR(param):
 
 def create_model(device, model_param, optimizer_param, scheduler_param, summary_writer, sw_step_interval):
     model = GGNN(**model_param).to(device)
+    decoupled_wd = optimizer_param.pop("decoupled_wd")
     clip_value = optimizer_param.pop("clip_value")
     optim_name = optimizer_param.pop("optim")
     if optim_name == "sgd":
         optimizer = optim.SGD(model.parameters(), momentum=0.9,
                               nesterov=True, **optimizer_param)
     elif optim_name == "adam":
-        optimizer = optim.AdamW(model.parameters(), **optimizer_param)
+        if decoupled_wd:
+            optimizer = optim.AdamW(model.parameters(), **optimizer_param)
+        else:
+            optimizer = optim.Adam(model.parameters(), **optimizer_param)
     elif optim_name == "amsgrad":
-        optimizer = optim.AdamW(model.parameters(), amsgrad=True,
-                               **optimizer_param)
+        if decoupled_wd:
+            optimizer = optim.AdamW(model.parameters(), amsgrad=True,
+                                    **optimizer_param)
+        else:
+            optimizer = optim.Adam(model.parameters(), amsgrad=True,
+                                   **optimizer_param)
     else:
         raise NameError("optimizer {} is not supported".format(optim_name))
     use_cosine_annealing = scheduler_param.pop("cosine_annealing")
@@ -178,6 +186,7 @@ if __name__ == '__main__':
     parser.add_argument("--optim", type=str, default="adam")
     parser.add_argument("--lr", type=float, default=1e-3)
     parser.add_argument("--weight_decay", type=float, default=0)
+    parser.add_argument("--decoupled_wd", action='store_true')
     parser.add_argument("--clip_value", type=float, default=0)
     parser.add_argument("--milestones", nargs='+', type=int, default=[10])
     parser.add_argument("--gamma", type=float, default=0.1)
@@ -225,7 +234,7 @@ if __name__ == '__main__':
     print()
 
     # Optimizer parameters
-    optimizer_param_names = ["optim", "lr", "weight_decay", "clip_value"]
+    optimizer_param_names = ["optim", "lr", "weight_decay", "decoupled_wd", "clip_value"]
     optimizer_param = {k : options[k] for k in optimizer_param_names if options[k] is not None}
     if optimizer_param["clip_value"] == 0.0:
         optimizer_param["clip_value"] = None

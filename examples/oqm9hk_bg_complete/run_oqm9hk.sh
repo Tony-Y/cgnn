@@ -26,6 +26,7 @@ python ${CGNN_HOME}/src/cgnn.py \
   --gamma 1e-4 \
   --cosine_annealing \
   --weight_decay 1e-6 \
+  --decoupled_wd \
   --summary_writer \
   --warmup \
   --output_activation softplus
