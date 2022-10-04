@@ -128,33 +128,39 @@ Note that we could obtain results slightly different from the paper's ones, espe
 You can see a training result at this [Kaggle Notebook](https://www.kaggle.com/code/tonyyy/cgnn-dev-v1-1-oqm9hk).
 If you try to train a CGNN model, click on the "copy & edit" button on this notebook and run your copy.
 
-The CGNN models were trained using PyTorh 1.10.2 with CUDA 11.3 on a single Nvidia P100 GPU.
+The CGNN models were trained using PyTorh 1.10.2 with CUDA 10.2 or 11.3 on a single Nvidia P100 GPU.
 
 **Testing errors of formation energy**
-| Dataset | Model      | RMSE (meV) | MAE (meV)  | Time   |
-| ------- |------------|-----------:|-----------:|-------:|
-| OQMD    | Benchmark  |       89.5 |       43.3 | 1h  2m |
-|         | No EdgeNet |       84.9 |       40.8 | 1h 17m |
-|         | Complete   |       84.6 |       38.9 | 1h 33m |
-| OQM9HK  | Complete   |       94.0 |       45.0 | 4h 54m |
+| Dataset | Model      |Decoupled WD| CUDA | RMSE (meV) | MAE (meV)  | Time   |
+| ------- |------------|:----------:|------|-----------:|-----------:|-------:|
+| OQMD    | Benchmark  |            | 10.2 |       84.8 |       42.6 | 1h 21m |
+|         |            |         ✅ | 11.3 |       89.5 |       43.3 | 1h  2m |
+|         | No EdgeNet |            | 10.2 |       81.1 |       40.1 | 1h 40m |
+|         |            |         ✅ | 11.3 |       84.9 |       40.8 | 1h 17m |
+|         | Complete   |            | 10.2 |       82.4 |       36.6 | 2h 9m |
+|         |            |         ✅ | 11.3 |       84.6 |       38.9 | 1h 33m |
+| OQM9HK  | Complete   |         ✅ | 11.3 |       94.0 |       45.0 | 4h 54m |
 
 **Testing errors of volume deviation**
-| Dataset | Model      | RMSE   | MAE    |
-| ------- |------------|-------:|-------:|
-| OQMD    | No EdgeNet | 0.0321 | 0.0164 |
-| OQM9HK  | No EdgeNet | 0.0321 | 0.0168 |
+| Dataset | Model      |Decoupled WD| CUDA | RMSE   | MAE    | Time   |
+| ------- |------------|:----------:|------|-------:|-------:|-------:|
+| OQMD    | No EdgeNet |            | 10.2 | 0.0317 | 0.0175 | 1h 41m |
+|         |            |         ✅ | 11.3 | 0.0321 | 0.0164 | 1h 19m |
+| OQM9HK  | No EdgeNet |         ✅ | 11.3 | 0.0321 | 0.0168 |        |
 
 **Testing errors of band gap**
-| Dataset | Model      | RMSE   | MAE    |
-| ------- |------------|-------:|-------:|
-| OQMD    | No EdgeNet | 0.2541 | 0.0484 |
-| OQM9HK  | Complete   | 0.3645 | 0.0778 |
+| Dataset | Model      |Decoupled WD| CUDA | RMSE   | MAE    | Time   |
+| ------- |------------|:----------:|------|-------:|-------:|-------:|
+| OQMD    | No EdgeNet |            | 10.2 | 0.2582 | 0.0496 | 1h 39m |
+|         |            |         ✅ | 11.3 | 0.2541 | 0.0484 | 1h 19m |
+| OQM9HK  | Complete   |         ✅ | 11.3 | 0.3645 | 0.0778 | 4h 55m |
 
 **Testing errors of total magnetization**
-| Dataset | Model      | RMSE   | MAE    |
-| ------- |------------|-------:|-------:|
-| OQMD    | No EdgeNet | 0.1974 | 0.0816 |
-| OQM9HK  | No EdgeNet | 0.1880 | 0.0630 |
+| Dataset | Model      |Decoupled WD| CUDA | RMSE   | MAE    | Time   |
+| ------- |------------|:----------:|------|-------:|-------:|-------:|
+| OQMD    | No EdgeNet |            | 10.2 | 0.1986 | 0.0815 | 1h 39m |
+|         |            |         ✅ | 11.3 | 0.1974 | 0.0816 | 1h 18m |
+| OQM9HK  | No EdgeNet |         ✅ | 11.3 | 0.1880 | 0.0630 | 3h 15m |
 
 **TensorBoard of training a complete CGNN model on the OQM9HK dataset for formation energy**
 ![TensorBoard](../figs/TensorBoard_CGNN_dev_v1_1_OQM9HK.png)
