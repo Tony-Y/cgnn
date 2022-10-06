@@ -101,8 +101,8 @@ class Model(object):
             self.lr_step = lr_step
         else:
             def lr_step(lr_scheduler, warmup_scheduler):
-                lr_scheduler.step(lr_scheduler.last_epoch+1)
-                warmup_scheduler.dampen()
+                with warmup_scheduler.dampening():
+                    lr_scheduler.step()
             self.lr_step = lr_step
 
     def _set_mode(self, phase):
