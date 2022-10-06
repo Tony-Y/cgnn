@@ -25,7 +25,9 @@ Note that the crystal graph represents only a repeating unit of [a periodic grap
 
 ```
 git clone https://github.com/Tony-Y/cgnn.git
-CGNN_HOME=`pwd`/cgnn
+cd cgnn
+git checkout dev_v1.1
+CGNN_HOME=`pwd`
 ```
 
 ### How to install PyTorch 1.10.2 with CUDA 10.2
