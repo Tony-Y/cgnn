@@ -1,4 +1,5 @@
 # Crystal Graph Neural Networks
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/Tony-Y/cgnn)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/crystal-graph-neural-networks-for-data-mining/formation-energy-on-oqmd-v12)](https://paperswithcode.com/sota/formation-energy-on-oqmd-v12?p=crystal-graph-neural-networks-for-data-mining)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/crystal-graph-neural-networks-for-data-mining/band-gap-on-oqmd-v12)](https://paperswithcode.com/sota/band-gap-on-oqmd-v12?p=crystal-graph-neural-networks-for-data-mining)
@@ -163,4 +164,4 @@ When you mention this work, please cite [the CGNN paper](https://storage.googlea
 
 Apache License 2.0
 
-(c) 2019 Takenori Yamamoto
+(c) 2019-2022 Takenori Yamamoto
