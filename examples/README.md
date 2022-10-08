@@ -147,7 +147,8 @@ Note that the total elapsed time depends on the used machine, and is less reprod
 |         |            |         ❌ | 11.3 |       83.8 |       36.7 | 1h 45m |
 |         |            |         ✅ | 10.2 |       86.3 |       39.3 | 2h 22m |
 |         |            |         ✅ | 11.3 |       84.6 |       38.9 | 1h 33m |
-| OQM9HK  | Complete   |         ✅ | 11.3 |       94.0 |       45.0 | 4h 54m |
+| OQM9HK  | Complete   |         ❌ | 11.3 |       93.2 |       43.8 | 5h  3m |
+|         |            |         ✅ | 11.3 |       92.6 |       44.3 | 5h  8m |
 
 **Testing errors of volume deviation**
 | Dataset | Model      |Decoupled WD| CUDA | RMSE   | MAE    | Time   |
