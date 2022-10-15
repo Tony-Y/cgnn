@@ -128,10 +128,11 @@ Note that we could obtain results slightly different from the paper's ones, espe
 You can see a training result at this [Kaggle Notebook](https://www.kaggle.com/code/tonyyy/cgnn-dev-v1-1-oqm9hk).
 If you try to train a CGNN model, click on the "copy & edit" button on this notebook and run your copy.
 
-| CGNN     | PyTorch | CUDA | Notebook | Output |
-|:--------:|:-------:|:----:|:--------:|:------:|
-| dev_v1.1 | 1.10.2  | 11.3 | [![Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/tonyyy/cgnn-dev-v1-1-oqm9hk) | [oqm9hk_fe_complete.zip](https://www.kaggle.com/code/tonyyy/cgnn-dev-v1-1-oqm9hk/data?select=oqm9hk_fe_complete.zip) |
-| dev_v1.1 | 1.12.1  | 11.6 | [![Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/tonyyy/cgnn-dev-v1-1-oqm9hk-torch1121-cuda116) | [oqm9hk_fe_complete.zip](https://www.kaggle.com/code/tonyyy/cgnn-dev-v1-1-oqm9hk-torch1121-cuda116/data?scriptVersionId=107551345&select=oqm9hk_fe_complete.zip) |
+| CGNN     | PyTorch | CUDA | Task             | Notebook | Output |
+|:--------:|:-------:|:----:|:-----------------|:--------:|:------:|
+| dev_v1.1 | 1.10.2  | 11.3 | Formation energy | [![Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/tonyyy/cgnn-dev-v1-1-oqm9hk) | [oqm9hk_fe_complete.zip](https://www.kaggle.com/code/tonyyy/cgnn-dev-v1-1-oqm9hk/data?select=oqm9hk_fe_complete.zip) |
+| dev_v1.1 | 1.12.1  | 11.6 | Formation energy | [![Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/tonyyy/cgnn-dev-v1-1-oqm9hk-torch1121-cuda116) | [oqm9hk_fe_complete.zip](https://www.kaggle.com/code/tonyyy/cgnn-dev-v1-1-oqm9hk-torch1121-cuda116/data?scriptVersionId=107551345&select=oqm9hk_fe_complete.zip) |
+|          |         |      | Band gap         | [![Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/tonyyy/cgnn-dev-v1-1-oqm9hk-band-gap-torch1121-cuda116) | [oqm9hk_bg_complete.zip](https://www.kaggle.com/code/tonyyy/cgnn-dev-v1-1-oqm9hk-band-gap-torch1121-cuda116/data?select=oqm9hk_bg_complete.zip)
 
 ## Setup
 The CGNN models are trained using PyTorh 1.10.2 with CUDA 10.2 or 11.3 on a single Nvidia P100 GPU.
