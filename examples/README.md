@@ -132,7 +132,8 @@ If you try to train a CGNN model, click on the "copy & edit" button on this note
 |:--------:|:-------:|:----:|:-----------------|:--------:|:------:|
 | dev_v1.1 | 1.10.2  | 11.3 | Formation energy | [![Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/tonyyy/cgnn-dev-v1-1-oqm9hk) | [oqm9hk_fe_complete.zip](https://www.kaggle.com/code/tonyyy/cgnn-dev-v1-1-oqm9hk/data?select=oqm9hk_fe_complete.zip) |
 | dev_v1.1 | 1.12.1  | 11.6 | Formation energy | [![Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/tonyyy/cgnn-dev-v1-1-oqm9hk-torch1121-cuda116) | [oqm9hk_fe_complete.zip](https://www.kaggle.com/code/tonyyy/cgnn-dev-v1-1-oqm9hk-torch1121-cuda116/data?scriptVersionId=107551345&select=oqm9hk_fe_complete.zip) |
-|          |         |      | Band gap         | [![Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/tonyyy/cgnn-dev-v1-1-oqm9hk-band-gap-torch1121-cuda116) | [oqm9hk_bg_complete.zip](https://www.kaggle.com/code/tonyyy/cgnn-dev-v1-1-oqm9hk-band-gap-torch1121-cuda116/data?select=oqm9hk_bg_complete.zip)
+|          |         |      | Band gap         | [![Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/tonyyy/cgnn-dev-v1-1-oqm9hk-band-gap-torch1121-cuda116) | [oqm9hk_bg_complete.zip](https://www.kaggle.com/code/tonyyy/cgnn-dev-v1-1-oqm9hk-band-gap-torch1121-cuda116/data?select=oqm9hk_bg_complete.zip) |
+|          |         |      | Magnetization    | [![Kaggle](https://kaggle.com/static/images/open-in-kaggle.svg)](https://www.kaggle.com/code/tonyyy/cgnn-dev-v1-1-oqm9hk-magnet-torch1121-cuda116/notebook) | [oqm9hk_mag_noEdgeNet.zip](https://www.kaggle.com/code/tonyyy/cgnn-dev-v1-1-oqm9hk-magnet-torch1121-cuda116/data?select=oqm9hk_mag_noEdgeNet.zip) |
 
 ## Setup
 The CGNN models are trained using PyTorh 1.10.2 with CUDA 10.2 or 11.3 on a single Nvidia P100 GPU.
