@@ -6,6 +6,9 @@
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/crystal-graph-neural-networks-for-data-mining/total-magnetization-on-oqmd-v12)](https://paperswithcode.com/sota/total-magnetization-on-oqmd-v12?p=crystal-graph-neural-networks-for-data-mining)
 
 [![Develop branch](https://img.shields.io/badge/develop-v1.1-red)](https://github.com/Tony-Y/cgnn/tree/dev_v1.1)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/oqm9hk-a-large-scale-graph-dataset-for/formation-energy-on-oqm9hk)](https://paperswithcode.com/sota/formation-energy-on-oqm9hk?p=oqm9hk-a-large-scale-graph-dataset-for)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/oqm9hk-a-large-scale-graph-dataset-for/band-gap-on-oqm9hk)](https://paperswithcode.com/sota/band-gap-on-oqm9hk?p=oqm9hk-a-large-scale-graph-dataset-for)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/oqm9hk-a-large-scale-graph-dataset-for/total-magnetization-on-oqm9hk)](https://paperswithcode.com/sota/total-magnetization-on-oqm9hk?p=oqm9hk-a-large-scale-graph-dataset-for)
 
 This repository contains the original implementation of the CGNN architectures described in the paper ["Crystal Graph Neural Networks for Data Mining in Materials Science"](https://storage.googleapis.com/rimcs_cgnn/cgnn_matsci_May_27_2019.pdf).
 
