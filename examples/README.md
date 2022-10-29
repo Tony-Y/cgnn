@@ -5,6 +5,7 @@ Click on one of the links below if you want to create a Colab notebook for train
 | v1.0.2 | 1.10.2  | 10.2 |[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tony-Y/oqmd-v1.2-dataset-for-cgnn/blob/main/CGNN_oqmd_fe_benchmark_torch1102%2Bcuda102.ipynb)|
 | v1.0.2 | 1.12.1  | 10.2 |[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tony-Y/oqmd-v1.2-dataset-for-cgnn/blob/main/CGNN_oqmd_fe_benchmark_torch1121%2Bcuda102.ipynb)|
 | v1.0.2 | 1.12.1  | 11.6 |[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tony-Y/oqmd-v1.2-dataset-for-cgnn/blob/main/CGNN_oqmd_fe_benchmark_torch1121%2Bcuda116.ipynb)|
+| v1.0.2 | 1.13.0  | 11.7 |[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Tony-Y/oqmd-v1.2-dataset-for-cgnn/blob/main/CGNN_oqmd_fe_benchmark_torch1130%2Bcuda117.ipynb)|
 
 # Examples
 
