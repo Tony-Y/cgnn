@@ -47,6 +47,7 @@ pip install pymatgen==2018.12.12 monty==1.0.3
 pip install qmpy==1.2.0 ase==3.17
 pip install pydash tqdm joblib
 ```
+This step requires `gcc`. So, you have to install `gcc` in your computer if not yet.
 
 You must edit the [Django](https://www.djangoproject.com) setting file in the database directory of `qmpy`.
 
