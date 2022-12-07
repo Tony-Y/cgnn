@@ -90,7 +90,7 @@ python ../tools/oqmd_data.py
 python ../tools/mp_graph.py
 ```
 
-`oqmd_data.py` takes a few hours to retrieve 561k OQMD entries. You will get the failure to determine the space group for the entry id `1018092`, but may ignore it because no space groups are used in the further processing. `mp_graph.py` takes a few hours to create all the crystal graphs for the OQMD dataset when using 8 CPUs concurrently. The directory `data` finally becomes 294 MB in total size.
+`oqmd_data.py` takes a few hours to retrieve 561k OQMD entries. `mp_graph.py` takes a few hours to create all the crystal graphs for the OQMD dataset when using 8 CPUs concurrently. The directory `data` finally becomes 294 MB in total size.
 
 ```
 python oqmd.py data
@@ -104,5 +104,7 @@ graph_data.npz
 split.json
 targets.csv
 ```
+
+The official dataset contains some incorrect space groups. So, your generaged `targets.csv` differs from the official one. Errata are available at [this link](https://github.com/Tony-Y/oqmd-v1.2-dataset-for-cgnn/blob/main/errata_spacegroup.csv).
 
 (c) 2019 Takenori Yamamoto
