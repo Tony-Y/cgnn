@@ -1,3 +1,5 @@
+**Note that the official OQMD v1.2 dataset for CGNN is available at [this link](https://doi.org/10.5281/zenodo.7118055). If you want to skip the dataset construction below, please place all the contents of the archive (oqmd-v1_2-for-cgnn.7z) in this folder (cgnn/OQMD).**
+
 # The Open Quantum Materials Database (OQMD)
 If you want to use the OQMD as a dataset for training CGNN models, you need a conda environment with the [qmpy](https://github.com/wolverton-research-group/qmpy) installed. [pymatgen](http://pymatgen.org) is also necessary for the use of the data format of the Materials Project. Because the OQMD uses MySQL 5.7, first install it.
 
