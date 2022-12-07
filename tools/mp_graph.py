@@ -106,9 +106,9 @@ def get_structure(m):
 
 def load_materials(filepath):
     try:
-        data = np.load(filepath)['materials']
+        data = np.load(filepath, allow_pickle=True)['materials']
     except UnicodeError:
-        data = np.load(filepath, encoding='latin1')['materials']
+        data = np.load(filepath, allow_pickle=True, encoding='latin1')['materials']
     return data
 
 def process(data_path):
