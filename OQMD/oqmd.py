@@ -55,9 +55,9 @@ def magnetization_per_atom(x):
 
 def load_materials(filepath):
     try:
-        data = np.load(filepath)['materials']
+        data = np.load(filepath, allow_pickle=True)['materials']
     except UnicodeError:
-        data = np.load(filepath, encoding='latin1')['materials']
+        data = np.load(filepath, allow_pickle=True, encoding='latin1')['materials']
     return data
 
 def get_prop(path):
@@ -85,7 +85,7 @@ graph_names = []
 graph_nodes = []
 graph_edges = []
 for path in graph_files:
-    data = np.load(path)
+    data = np.load(path, allow_pickle=True)
     graph_names += list(data['graph_names'])
     graph_nodes += list(data['graph_nodes'])
     graph_edges += list(data['graph_edges'])
