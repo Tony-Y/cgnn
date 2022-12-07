@@ -44,7 +44,7 @@ Next, create the environment `qmpy` as follows:
 ```
 conda create --name qmpy
 conda install -n qmpy scikit-learn matplotlib python=2.7
-source activate  qmpy
+conda activate  qmpy
 pip install pymatgen==2018.12.12 monty==1.0.3
 pip install qmpy==1.2.0 ase==3.17
 pip install pydash tqdm joblib
@@ -84,7 +84,7 @@ The empty `PORT` makes Django use the default port number of MySQL `3306`. If th
 To create dataset files used for `cgnn.py`, run `oqmd_data.py`, `mp_graph.py`, and `oqmd.py` sequentially in the directory `cgnn/OQMD` as follows:
 
 ```
-source activate qmpy
+conda activate qmpy
 mkdir data
 python ../tools/oqmd_data.py
 python ../tools/mp_graph.py
