@@ -9,6 +9,26 @@ If your Linux OS is Ubuntu 16.04 or 18.04, you can install MySQL 5.7 as follows:
 sudo apt install mysql-server mysql-client libmysqlclient-dev
 ```
 
+Configure the MySQL server.
+Here is an example of the MySQL server configuration file `my.cnf`:
+
+```
+[mysqld]
+server_id=1
+innodb_buffer_pool_size=1G
+innodb_log_file_size=1G
+innodb_flush_method=O_DIRECT
+innodb_io_capacity=4000
+innodb_io_capacity_max=8000
+# For importing data
+skip_innodb_doublewrite
+```
+
+After configuring, restart the MySQL server. If you use Ubuntu, execute the following command:
+```
+sudo systemctl restart mysql
+```
+
 Enter a MySQL session as root.
 
 ```
@@ -37,7 +57,8 @@ Then, restore the downloaded data to the empty database.
 [Enter your MySQL password]
 ```
 
-where `$USER` is your username. The database finally grows approximate 80 GB, but the intermediate stages need larger storage (*ca.* 200 GB).
+where `$USER` is your username. The database finally grows approximate 80 GB.
+Edit the MySQL server configuration file to remove `skip_innodb_doublewrite` once finished.
 
 Next, create the environment `qmpy` as follows:
 
