@@ -10,6 +10,9 @@
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/oqm9hk-a-large-scale-graph-dataset-for/band-gap-on-oqm9hk)](https://paperswithcode.com/sota/band-gap-on-oqm9hk?p=oqm9hk-a-large-scale-graph-dataset-for)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/oqm9hk-a-large-scale-graph-dataset-for/total-magnetization-on-oqm9hk)](https://paperswithcode.com/sota/total-magnetization-on-oqm9hk?p=oqm9hk-a-large-scale-graph-dataset-for)
 
+<a href="https://www.youtube.com/watch?v=ghzHOLm0FCE"><img src="http://img.youtube.com/vi/ghzHOLm0FCE/mqdefault.jpg" alt="iCrucible Demo" width="180"/></a>
+*[Demo Video] The iOS app, iCrucible, uses the CGNN technology to discover new compounds.*
+
 This repository contains the original implementation of the CGNN architectures described in the paper ["Crystal Graph Neural Networks for Data Mining in Materials Science"](https://storage.googleapis.com/rimcs_cgnn/cgnn_matsci_May_27_2019.pdf).
 
 <p align="center"><img src="figs/SiO2.png" alt="Logo" width="200"/></p>
@@ -169,4 +172,4 @@ When you mention this work, please cite [the CGNN paper](https://storage.googlea
 
 Apache License 2.0
 
-(c) 2019-2022 Takenori Yamamoto
+(c) 2019-2024 Takenori Yamamoto
